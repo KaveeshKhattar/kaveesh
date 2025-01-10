@@ -131,7 +131,7 @@ export default function About() {
           </ul>
         </Section>
         <Section heading="Work" headingAlignment="left">
-          <div className="flex w-full flex-col gap-8">
+          <div className="flex flex-col gap-8">
             <p>
               I specialise in the Web, Distributed Systems & Machine Learning
               and have a hobby for building iOS apps on the side but I am always

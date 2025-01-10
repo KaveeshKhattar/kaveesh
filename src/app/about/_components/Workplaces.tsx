@@ -16,32 +16,34 @@ function Workplace({ title, company, imageSrc, date, link }: Workplace) {
   const [startMonth, startYear, _hyphen, endMonth] = date.split(" ");
   const content = (
     <>
-      <div className="flex items-center gap-4">
-        <Image
-          src={imageSrc}
-          alt={company}
-          width={48}
-          height={48}
-          className={clsx(
-            "rounded-md",
-            company === "University of Houston" && "bg-neutral-50"
-          )}
-        />
-        <div className="flex flex-col gap-px">
-          <p className={link ? "external-arrow" : ""}>{title}</p>
-          <p className="text-muted-foreground">{company}</p>
+      <div className="flex justify-between w-full gap-4">
+        
+        <div className="flex space-x-1">
+          <div>
+            <Image
+              src={imageSrc}
+              alt={company}
+              width={48}
+              height={48}
+              className={clsx("rounded-md")}
+            />
+          </div>
+
+          <div className="flex flex-col gap-px">
+            <p className={link ? "external-arrow" : ""}>{title}</p>
+            <p className="text-muted-foreground">{company}</p>
+          </div>
         </div>
-        <div className="">
-          <p className="text-end">
-            {startMonth}
+
+        <p className="text-muted-foreground text-end">
+        {startMonth}
             <span>&nbsp;</span>
             {startYear}
             {_hyphen}
             <span>&nbsp;</span>
             {endMonth}
           </p>
-          {/* {date && <time className="text-muted-foreground">{date.replace(' ', '\u00A0')}</time>} */}
-        </div>
+        {/* {date && <time className="text-muted-foreground">{date}</time>} */}
       </div>
     </>
   );
