@@ -17,6 +17,11 @@ export const metadata: Metadata = {
 };
 
 export default function About() {
+  const processedWorkplaces = workplaces.map((workplace) => ({
+    ...workplace,
+    date: workplace.date.replace(" ", "\u00A0"), // Non-breaking space
+  }));
+
   return (
     <div className="flex flex-col gap-16 md:gap-24">
       <div>
@@ -73,18 +78,20 @@ export default function About() {
           <div className="flex flex-col gap-6">
             <p>
               Hey, I&apos;m Kaveesh Khattar! Originally from Delhi, I&apos;ve
-              been born and raised based in Bangalore with a stint in
-              Mumbai as well.
+              been born and raised based in Bangalore with a stint in Mumbai as
+              well.
             </p>
 
             <p>
-              I got into Computer Science at age 8 through the iPhone which led me into a career in tech. I&apos;ve recently began working as a software engineer, but have been coding for the past 6 years!
+              I got into Computer Science at age 8 through the iPhone which led
+              me into a career in tech. I&apos;ve recently began working as a
+              software engineer, but have been coding for the past 6 years!
             </p>
 
             <p>
-              Beyond work, I&apos;ve enjoyed leading workshops and
-              contributing to tech communities to foster learning and engagement
-              in software development.
+              Beyond work, I&apos;ve enjoyed leading workshops and contributing
+              to tech communities to foster learning and engagement in software
+              development.
             </p>
             <p>
               When I&apos;m not at my desk, I am probably lifting weights,
@@ -131,7 +138,7 @@ export default function About() {
               learning new things.
             </p>
             <p>Here are some of the places I have worked.</p>
-            <Workplaces items={workplaces} />
+            <Workplaces items={processedWorkplaces} />
           </div>
         </Section>
       </div>
@@ -143,7 +150,7 @@ const workplaces = [
   {
     title: "Senior Associate Software Engineer",
     company: "AT&T",
-    date: "Jul 2024 -",
+    date: "Jul 2024 - ",
     imageSrc: att,
     link: "https://att.com",
   },

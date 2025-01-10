@@ -119,7 +119,7 @@ export default function AllProjects() {
               key={project.slug}
               className="flex-col items-center space-y-2 bg-secondary p-4 rounded-md"
             >
-              <div className="min-h-[750px]">
+              <div className="md:min-h-[750px]">
                 <video
                   className=""
                   controls

@@ -12,7 +12,8 @@ type Workplace = {
 };
 
 function Workplace({ title, company, imageSrc, date, link }: Workplace) {
-
+  if (!date) return null;
+  const [startMonth, startYear, _hyphen, endMonth] = date.split(" ");
   const content = (
     <>
       <div className="flex items-center gap-4">
@@ -30,8 +31,18 @@ function Workplace({ title, company, imageSrc, date, link }: Workplace) {
           <p className={link ? "external-arrow" : ""}>{title}</p>
           <p className="text-muted-foreground">{company}</p>
         </div>
+        <div className="">
+          <p className="text-end">
+            {startMonth}
+            <span>&nbsp;</span>
+            {startYear}
+            {_hyphen}
+            <span>&nbsp;</span>
+            {endMonth}
+          </p>
+          {/* {date && <time className="text-muted-foreground">{date.replace(' ', '\u00A0')}</time>} */}
+        </div>
       </div>
-      {date && <time className="text-muted-foreground">{date}</time>}
     </>
   );
   return (
