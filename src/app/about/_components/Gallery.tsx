@@ -111,10 +111,10 @@ function Photo({
         >
           <Halo strength={50} className="flex items-center">
             <span className="absolute w-[500px] h-[500px] rotate-[-20deg] bg-repeat bg-[length:280px] bg-[url('/photopaper.png')]" />
-            
+
             <div className="z-[1] px-6 font-mono">
-                <p className="text-muted-foreground">{fileName}</p>
-                {meta && <p className="text-sm text-muted-foreground">{meta}</p>}
+              <p className="text-muted-foreground">{fileName}</p>
+              {meta && <p className="text-sm text-muted-foreground">{meta}</p>}
             </div>
           </Halo>
         </div>
