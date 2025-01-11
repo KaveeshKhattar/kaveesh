@@ -106,6 +106,6 @@ const allPublications = [
       "Exploring Novel Image Generation via Script-Directed Scene Formation",
     paper: "/files/text-to-scene.pdf",
     summary:
-      "Create unique representations of real world entities using a pretrained DF GAN.",
+      "Create unique representations of real world entities using diffusion based GANs.",
   },
 ];

@@ -18,7 +18,7 @@ function Workplace({ title, company, imageSrc, date, link }: Workplace) {
     <>
       <div className="flex justify-between w-full gap-4">
         
-        <div className="flex space-x-1">
+        <div className="flex space-x-2">
           <div>
             <Image
               src={imageSrc}

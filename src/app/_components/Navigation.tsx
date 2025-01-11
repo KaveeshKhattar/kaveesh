@@ -106,7 +106,7 @@ export default function Navigation() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: "100%" }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="fixed inset-0 z-50 bg-[rgb(250,250,250)] dark:bg-[#0a0a0a] text-black dark:text-white flex flex-col items-center justify-center space-y-6 font-sans"
+                className="fixed inset-0 z-50 bg-[rgb(250,250,250)] dark:bg-[#0a0a0a] text-black dark:text-white flex flex-col items-center justify-center space-y-6 font-mono"
               >
                 <button
                   className="absolute top-4 right-4 text-black dark:text-white"
