@@ -1,14 +1,99 @@
-<div className="animate-in">
-  <div className="text-3xl font-bold leading-tight tracking-tight text-primary">
-    Why should students only come up with the answers?
-  </div>
-  <div className="text-muted-foreground">
-    Revolutionizing learning through student built question banks.
-  </div>
+import { Image } from "next/image";
 
-  <div>
+<div className="animate-in prose">
+  <div className="flex flex-col gap-4">
+      <div className="text-3xl font-bold leading-tight tracking-tight text-primary">
+        Why should students only come up with the answers?
+      </div>
+      <div className="text-muted-foreground">
+        Solan, revolutionizing learning through student-built question banks.
+      </div>
 
-<div></div>
+    <div className="flex space-x-2">
+      <div className="">
+      <img src="/kaveesh.jpg" height={50} width={50} className="rounded-md"/>
+      </div>
+      <div>
+        <p>Kaveesh Khattar</p>
+        <p className="text-muted-foreground">Jan 20, 2019</p>
+      </div>
+    </div>
+
+    <div className="flex flex-col gap-16">
+
+      <div>
+        <img src="/solan-first.jpg" className="rounded-md w-[calc(100%+48px)] md:rounded-lg" />
+      </div>
+
+      <div className="flex flex-col gap-16">
+        <div className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold">Cisco Talent Outreach</h2>
+        <p> Cisco reached out to my school this past summer, among some others as well for it's outreach program. We were asked to identify problems our school currently tackles quite frequently or something the students at our school feel can be improved through technology.</p>
+        </div>
+
+        <div className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold">Technology</h2>
+        <p>The technology we adopted for revolved around Python for the main reason that Python was in our curriculum and learning frameworks around Python would make the learning curve less steeper for us students, who didn't have a lot of prior coding experience apart from playing around with HTML, CSS and some JavaScript here and there.</p>
+
+        <p>We went ahead with Django as the backend for our application, fetching data from a MySQL database and displaying our web pages with HTML, CSS and JavaScript. We used PythonAnywhere to host our application at the end of the program.</p>
+
+        <img src="/img-local.png" />
+        </div>
+
+        <div className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold">Our Idea and Proposal</h2>
+        <p>After exploring several ideas, we decided to develop a solution that would make it easier for teachers to manage exam preparation quizzes for students. We observed that many students spend significant time before exams discussing topics and potential questions with their peers.</p>
+
+        <p>This inspired us to create a student-driven question bank, where students could submit questions to help others prepare more effectively. Additionally, the platform would generate daily quizzes from these questions, reducing teachers' workload and streamlining the preparation process.</p>
+
+        <h3 className="text-md font-semibold"> 1. Setting the stage </h3>
+        <p>We went ahead with building the schema for our database that stored all the questions per subject per chapter and relations with other entities such as quizzes. This was relatively straightfoward, with a couple more entities for managing authentication and specific tables to each role (like student reports for the teacher).</p>
+
+        <p>We then mapped this schema to Django models before implementing routes to different parts of the application.</p>
+
+        <pre>
+        ```python
+        from django.db import models
+
+        class question(models.Model):
+          subject=models.CharField(primary_key=True,max_length=80,db_column='subject')
+          chapter=models.CharField(max_length=80,db_column='chapter', null=False)
+          question=models.CharField(max_length=1000, db_column = 'question', null = False)
+          qotw = models.CharField(max_length=1, db_column='qotw', default='n')
+          username = models.CharField(max_length=100, db_column='username', null=False)
+
+          class Meta:
+            db_table = 'question'
+            verbose_name_plural = 'questions'
+          ```
+        </pre>
+
+        <h3 className="text-md font-semibold"> 2. Building the Question Bank & Generating Quizzes </h3>
+        <p>We then went on to implement the routes for the Question Bank after populating the MySQL database with seed data, post which, we implemented a rudimentary frontend to make sure things are tying together well. We used modals to allow the user to enter their questions and tweak its settings like difficulty level and gave them points for each question submitted to introduce a gamified element. Once we had the entire flow, from the HTML to the database working, we went ahead with enhancing the UI.</p>
+
+        <p>After the question bank was setup, it was just a matter of picking questions per chapter of a subject on demand to generate quizzes for the teacher on the fly to help their students revise. We were able to complete this feature quicker as we had a good foundation with the Question Bank and just had to pick questions based on the difficulty set by the teacher.</p>
+
+        <h3 className="text-md font-semibold"> 3. Authentication for different roles - Student & Teacher </h3>
+
+        <p>This part was less difficult to implement as Django really helped us out here. Django comes with built in authentication which handled different kinds of users as well, enhancing our application with Role-Based Access (RBAC) for some of the sensitive features of the application.</p>
+
+        <img src="/django-auth.png" className="rounded-md" />
+
+        <h3 className="text-md font-semibold"> 4. Deploying the application </h3>
+        <p>We deployed our app to PythonAnywhere, as it offered a robust hosting platform for Python applications, which aligned well with our app&apos;s tech stack. Although it took a few attempts to successfully deploy, the challenges were more related to configuring the environment on PythonAnywhere than with the app itself.</p>
+        </div>
+
+        <div className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold">The Final Result</h2>
+        <p>We piloted the application in our school for the second half of the school year starting with the CS class and around 60+ kids used this app during this phase.</p>
+
+        <figure className="flex flex-col justify-center items-center space-y-2">
+          <img src="/solan-second-last.jpg" className="rounded-md"/>
+          <figcaption className="text-center text-muted-foreground">The Cisco Talent Outreach team from Kumarans</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
 
   </div>
 </div>
