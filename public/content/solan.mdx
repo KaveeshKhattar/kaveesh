@@ -1,5 +1,3 @@
-import { Image } from "next/image";
-
 <div className="animate-in prose">
   <div className="flex flex-col gap-4">
       <div className="text-3xl font-bold leading-tight tracking-tight text-primary">
@@ -51,21 +49,21 @@ import { Image } from "next/image";
 
         <div className="flex flex-col gap-8">
 
-        <div>
+        <div className="flex flex-col gap-4">
         <h3 className="text-md font-semibold"> 1. Setting the stage </h3>
         <p>We went ahead with building the schema for our database that stored all the questions per subject per chapter and relations with other entities such as quizzes. This was relatively straightfoward, with a couple more entities for managing authentication and specific tables to each role (like student reports for the teacher).</p>
 
         <p>We then mapped this schema to Django models before implementing routes to different parts of the application.</p>
         </div>
 
-        <div>
+        <div className="flex flex-col gap-4">
         <h3 className="text-md font-semibold"> 2. Building the Question Bank & Generating Quizzes </h3>
         <p>We then went on to implement the routes for the Question Bank after populating the MySQL database with seed data, post which, we implemented a rudimentary frontend to make sure things are tying together well. We used modals to allow the user to enter their questions and tweak its settings like difficulty level and gave them points for each question submitted to introduce a gamified element. Once we had the entire flow, from the HTML to the database working, we went ahead with enhancing the UI.</p>
 
         <p>After the question bank was setup, it was just a matter of picking questions per chapter of a subject on demand to generate quizzes for the teacher on the fly to help their students revise. We were able to complete this feature quicker as we had a good foundation with the Question Bank and just had to pick questions based on the difficulty set by the teacher.</p>
         </div>
 
-        <div>
+        <div className="flex flex-col gap-4">
         <h3 className="text-md font-semibold"> 3. Authentication for different roles - Student & Teacher </h3>
 
         <p>This part was less difficult to implement as Django really helped us out here. Django comes with built in authentication which handled different kinds of users as well, enhancing our application with Role-Based Access (RBAC) for some of the sensitive features of the application.</p>
@@ -75,7 +73,7 @@ import { Image } from "next/image";
 
         </div>
 
-        <div>
+        <div className="flex flex-col gap-4">
         <h3 className="text-md font-semibold"> 4. Deploying the application </h3>
         <p>We deployed our app to PythonAnywhere, as it offered a robust hosting platform for Python applications, which aligned well with our app&apos;s tech stack. Although it took a few attempts to successfully deploy, the challenges were more related to configuring the environment on PythonAnywhere than with the app itself.</p>
         </div>

@@ -57,7 +57,7 @@ const blogs = [
     id: "swiftui",
     title: "iOS",
     summary: "Taming Apple's bald eagle",
-    date: "2020-03-18",
+    date: "2021-10-18",
   },
   {
     id: "teachmate",
