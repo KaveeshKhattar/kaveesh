@@ -20,10 +20,8 @@ export default function Home() {
           <h1 className="animate-in text-3xl font-semibold">
             hey, Kaveesh here!
           </h1>
-          <p className="animate-in text-muted-foreground">
-            I&apos;m a software engineer in Bangalore with an interest in using{" "}
-            <br />
-            technology to solve problems I come across in my world.
+          <p className="animate-in text-muted-foreground md:w-3/4">
+            I&apos;m a software engineer in Bangalore with an interest in using technology to solve problems I come across in my world.
           </p>
         </div>
 
