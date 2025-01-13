@@ -1,14 +1,135 @@
-<div className="animate-in">
-  <div className="text-3xl font-bold leading-tight tracking-tight text-primary">
-    Combining Tinder & Loopt for team finding
-  </div>
-  <div className="text-muted-foreground">
-    Problems shaped by personal experiences lead to ingenious solutions.
-  </div>
+<div className="animate-in prose">
+  <div className="flex flex-col gap-4">
+      <div className="text-3xl font-bold leading-tight tracking-tight text-primary">
+        Combining Tinder & Loopt for team finding
+      </div>
+      <div className="text-muted-foreground">
+        Problems shaped by personal experiences lead to ingenious solutions - like combining 2 existing ideas.
+      </div>
 
-  <div>
+    <div className="flex space-x-2">
+      <div className="">
+      <img src="/kaveesh.jpg" height={50} width={50} className="rounded-md"/>
+      </div>
+      <div>
+        <p>Kaveesh Khattar</p>
+        <p className="text-muted-foreground">Apr 15, 2022</p>
+      </div>
+    </div>
 
-<div></div>
+    <div className="flex flex-col gap-16">
+
+      <div>
+        <img src="/teamfinder-logo.png" className="rounded-md w-[calc(100%+48px)] md:rounded-lg" />
+      </div>
+
+      <div className="flex flex-col gap-16">
+
+        <div className="flex flex-col gap-4">
+
+        <h2 className="text-xl font-semibold">The Problem Statement</h2>
+        <p>As I walk through my college hall, I come across a poster titled: Hall-o-thon, a hackathon on Halloween. It&apos;s my second year of college, but my first time on campus since Covid restrictions got a bit lenient, so I was amped to go. I decided to ask my friends after class to form a team and sign up for it.</p>
+
+        <p>&quot;I&apos;m out of town&quot;, &quot;I&apos;ve a family event&quot;, &quot;It&apos;s a Sunday dude!&quot;. Everyone I hung out with backed out. So, you guessed it, I didn&apos;t end up going. Only to realise that there were at least a couple of teams who had people I knew from high school who attended the event and had a spot on their team and might have even been looking for people. Only if I knew that they were going.</p>
+
+        </div>
+
+        <div className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold">Technology</h2>
+        <p>The technology I worked with on this project was nothing edgy. A conventional, yet reliable tech stack and was a reflection of the tech I was using at AT&T.</p>
+
+        <p>I went ahead with Spring Boot as the backend for the application, fetching data from a PostgreSQL database (hosted on Supabase), displaying the web pages with React.js. After dockerizing the backend and frontend I hosted them on Render and Vercel respectively.</p>
+
+        <img src="/tech-stack-teamfinder-2.png" className="rounded-md"/>
+        </div>
+
+        <div className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold">Idea and Proposal</h2>
+
+        <p>I wanted to build a platform that would help improve discovery of teams that include people you may have known in the past—acquaintances you might not have considered approaching. This platform would connect you with teams actively seeking members, ensuring you aren&apos;t limited by your immediate circle.</p>
+
+        <div className="flex flex-col gap-4">
+        <p>1. Tinder: Match with teams</p>
+        <p>2. Loopt: Discover where your friends are and how close they are to you. <span className="text-muted-foreground"><a href="https://www.youtube.com/watch?v=KhhId_WG7RA" target="_blank">[Sam Altman&apos;s pitch]</a></span><br /> </p>
+        <p>Now imagine combining the two—discover which teams your acquaintances are part of and connect effortlessly. It's Tinder meets Loopt!</p>
+        </div>
+
+        <div className="flex flex-col gap-8">
+
+        <div className="flex flex-col gap-4">
+        <h3 className="text-md font-semibold"> Week 1: Setting the stage </h3>
+        <p>I started with listing the features and designing the schema for TeamFinder.</p>
+
+        <figure className="flex flex-col justify-center items-center">
+        <img src="/early-sketch-teamfinder-2.png" className="rounded-md" />
+        <figcaption className="text-muted-foreground text-center">An early schema design of TeamFinder</figcaption>
+        </figure>
+        </div>
+
+        <div className="flex flex-col gap-4">
+        <h3 className="text-md font-semibold"> Week 2: Setting up Authentication </h3>
+        <p>This was more difficult to implement. I started from scratch here. I began by creating models to store user data and followed up with Data Transfer Objects (DTOs) to manage user details and credentials, such as JSON Web Tokens (JWTs). </p>
+
+        <p>Next, I developed the core authentication logic. The process began with implementing functionality to load a user based on their email. If the user was new, a service was triggered to send a verification email containing a unique code for email validation. I then implemented a JWT filter service to extract claims (data embedded within the token) and validate users, ensuring they remained signed in for longer durations. For new users, the service generated fresh tokens. Additionally, I wrote JWT refresh logic to renew tokens upon expiration, limiting the refresh process to a predefined timeframe (e.g., a specific number of weeks).</p>
+
+        <img src="/auth.png" className="rounded-md"/>
+
+        </div>
+
+        <div className="flex flex-col gap-4">
+        <h3 className="text-md font-semibold"> Week 3: Building the "Colleges" & "Events" features</h3>
+
+        <p>Once authentication was complete, I shifted focus to building the core features of the application. I began by implementing functionality to view all colleges hosting team events. This involved creating the model, repository, service, and controller. To handle CORS issues caused by the frontend being hosted on a different domain, I implemented a preflight OPTIONS request.</p>
+
+        <p>Next, I developed the Events feature, which displayed details such as the required number of team members, event date, and venue. This implementation was relatively straightforward, as it followed a similar structure to the college feature, making the process more efficient.</p>
+
+        <div className="flex space-x-4">
+          <img src="/colleges.png" className="rounded-md w-1/2 border-2 border-black" />
+          <img src="/events.png" className="rounded-md w-1/2 border-2 border-black" />
+        </div>
+
+        </div>
+
+        <div className="flex flex-col gap-4">
+        <h3 className="text-md font-semibold"> Week 4: Building the "Teams" feature </h3>
+
+        <p>Next, I developed a feature where users could view the different teams registered for an event, along with their contact information, such as email addresses. This made it easy for individuals to reach out and collaborate when needed.</p>
+
+        <img src="/teams.png" className="rounded-md border-2 border-black" />
+        </div>
+
+
+
+        <div className="flex flex-col gap-4">
+        <h3 className="text-md font-semibold"> Week 5: Building the "Interested Individuals" feature </h3>
+        <p>An interesting feature of this application is its bidirectional search functionality. Not only can individuals search for teams, but teams can also search for individuals or small groups to join them. In this section, teams can view a person's email and directly reach out to them, facilitating seamless collaboration.</p>
+
+        <div className="flex space-x-4">
+          <img src="/interested-individuals-2.png" className="rounded-md border-2 border-black" />
+        </div>
+        </div>
+
+        <div className="flex flex-col gap-4">
+        <h3 className="text-md font-semibold"> Week 6: Testing & Deployment </h3>
+        <p>I containerized the backend using Docker and uploaded the Docker image to Render for deployment. The frontend was deployed to Vercel, and I updated the API endpoints to point to the new domain hosted on Render.</p>
+        </div>
+
+        </div>
+
+
+        </div>
+
+        <div className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold">The Final Result</h2>
+        <p>The project is now live <span className="underline text-muted-foreground"><a href="https://teamfinder-frontend.vercel.app/">here</a></span>, check it out! While building this project I learnt a lot and I still feel there is a lot more to learn in terms of the technicalities within Spring like File Uploads and leveraging the rest of the tools in the Spring ecosystem.</p>
+
+        <figure className="flex flex-col justify-center items-center space-y-2">
+          <img src="/teamfinder-copy.png" className="rounded-md border-2 border-black" />
+          <figcaption className="text-center text-muted-foreground">TeamFinder</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
 
   </div>
 </div>

@@ -21,7 +21,7 @@ export default async function BlogPost({
   const content = fs.readFileSync(filePath, "utf8");
 
   return (
-    <article>
+    <article className="max-w-[800px]">
       <MDXRemote source={content} />
     </article>
   );
