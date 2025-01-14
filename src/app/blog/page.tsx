@@ -1,6 +1,12 @@
 import Link from "next/link";
 import { formatDate } from "../_utils/formateDate";
 import Section from "../_components/Section";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blog | Kaveesh Khattar",
+  description: "Built by Kaveesh Khattar",
+};
 
 export default function Blog() {
   const allBlogs = blogs.sort(

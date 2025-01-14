@@ -2,6 +2,12 @@ import Link from "next/link";
 import Halo from "../_components/Halo";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Publications | Kaveesh Khattar",
+  description: "Built by Kaveesh Khattar",
+};
 
 export default function AllPublications() {
   return (

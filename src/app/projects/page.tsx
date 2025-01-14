@@ -6,6 +6,12 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { FaGithub } from "react-icons/fa";
 import { useState } from "react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Projects | Kaveesh Khattar",
+  description: "Built by Kaveesh Khattar",
+};
 
 export default function AllProjects() {
   const [currentDomain, setCurrentDomain] = useState("Web");
