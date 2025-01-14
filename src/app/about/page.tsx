@@ -78,7 +78,7 @@ export default function About() {
           <div className="flex flex-col gap-6">
             <p>
               Hey, I&apos;m Kaveesh Khattar! Originally from Delhi, I&apos;ve
-              been born and raised based in Bangalore with a stint in Mumbai as
+              been born and raised in Bangalore with a stint in Mumbai as
               well.
             </p>
 
