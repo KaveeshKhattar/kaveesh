@@ -40,7 +40,10 @@
 
         <p>I went ahead with Spring Boot as the backend for the application, fetching data from a PostgreSQL database (hosted on Supabase), displaying the web pages with React.js. After dockerizing the backend and frontend I hosted them on Render and Vercel respectively.</p>
 
+        <figure className="flex flex-col justify-center items-center">
         <img src="/tech-stack-teamfinder-2.png" className="rounded-md"/>
+        <figcaption className="text-muted-foreground text-center">React.js, Spring Boot, PostgreSQL, Docker, Vercel and Render</figcaption>
+        </figure>
         </div>
 
         <div className="flex flex-col gap-4">
@@ -72,7 +75,10 @@
 
         <p>Next, I developed the core authentication logic. The process began with implementing functionality to load a user based on their email. If the user was new, a service was triggered to send a verification email containing a unique code for email validation. I then implemented a JWT filter service to extract claims (data embedded within the token) and validate users, ensuring they remained signed in for longer durations. For new users, the service generated fresh tokens. Additionally, I wrote JWT refresh logic to renew tokens upon expiration, limiting the refresh process to a predefined timeframe (e.g., a specific number of weeks).</p>
 
+        <figure className="flex flex-col justify-center items-center">
         <img src="/auth.png" className="rounded-md"/>
+        <figcaption className="text-muted-foreground text-center">Authentication Flow</figcaption>
+        </figure>
 
         </div>
 
@@ -84,8 +90,16 @@
         <p>Next, I developed the Events feature, which displayed details such as the required number of team members, event date, and venue. This implementation was relatively straightforward, as it followed a similar structure to the college feature, making the process more efficient.</p>
 
         <div className="flex space-x-4">
-          <img src="/colleges.png" className="rounded-md w-1/2 border-2 border-black" />
-          <img src="/events.png" className="rounded-md w-1/2 border-2 border-black" />
+          <figure className="flex flex-col justify-center items-center">
+            <img src="/colleges.png" className="rounded-md border-2 border-black" />
+            <figcaption className="text-muted-foreground text-center">View Colleges</figcaption>
+          </figure>
+
+          <figure className="flex flex-col justify-center items-center">
+            <img src="/events.png" className="rounded-md border-2 border-black" />
+            <figcaption className="text-muted-foreground text-center">View Events</figcaption>
+          </figure>
+
         </div>
 
         </div>
@@ -95,7 +109,11 @@
 
         <p>Next, I developed a feature where users could view the different teams registered for an event, along with their contact information, such as email addresses. This made it easy for individuals to reach out and collaborate when needed.</p>
 
-        <img src="/teams.png" className="rounded-md border-2 border-black" />
+        
+        <figure className="flex flex-col justify-center items-center">
+            <img src="/teams.png" className="rounded-md border-2 border-black" />
+            <figcaption className="text-muted-foreground text-center">View Teams</figcaption>
+          </figure>
         </div>
 
 
@@ -105,7 +123,10 @@
         <p>An interesting feature of this application is its bidirectional search functionality. Not only can individuals search for teams, but teams can also search for individuals or small groups to join them. In this section, teams can view a person's email and directly reach out to them, facilitating seamless collaboration.</p>
 
         <div className="flex space-x-4">
-          <img src="/interested-individuals-2.png" className="rounded-md border-2 border-black" />
+        <figure className="flex flex-col justify-center items-center">
+            <img src="/interested-individuals-2.png" className="rounded-md border-2 border-black" />
+            <figcaption className="text-muted-foreground text-center">View Interested Individuals</figcaption>
+          </figure>
         </div>
         </div>
 

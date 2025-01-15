@@ -37,7 +37,10 @@
 
         <p>We went ahead with Django as the backend for our application, fetching data from a MySQL database and displaying our web pages with HTML, CSS and JavaScript. We used PythonAnywhere to host our application at the end of the program.</p>
 
-        <img src="/img-local.png" />
+        <figure className="flex flex-col justify-center items-center space-y-2">
+        <img src="/img-local.png" className="rounded-md"/>
+          <figcaption className="text-center text-muted-foreground">HTML, CSS, JavaScript, Django, MySQL and PythonAnywhere</figcaption>
+          </figure>
         </div>
 
         <div className="flex flex-col gap-4">
@@ -67,9 +70,11 @@
         <h3 className="text-md font-semibold"> 3. Authentication for different roles - Student & Teacher </h3>
 
         <p>This part was less difficult to implement as Django really helped us out here. Django comes with built in authentication which handled different kinds of users as well, enhancing our application with Role-Based Access (RBAC) for some of the sensitive features of the application.</p>
-        
 
+        <figure className="flex flex-col justify-center items-center space-y-2">
         <img src="/django-auth.png" className="rounded-md" />
+          <figcaption className="text-center text-muted-foreground">Authentication in Django</figcaption>
+          </figure>
 
         </div>
 
@@ -77,7 +82,7 @@
         <h3 className="text-md font-semibold"> 4. Deploying the application </h3>
         <p>We deployed our app to PythonAnywhere, as it offered a robust hosting platform for Python applications, which aligned well with our app&apos;s tech stack. Although it took a few attempts to successfully deploy, the challenges were more related to configuring the environment on PythonAnywhere than with the app itself.</p>
         </div>
-        
+
         </div>
         </div>
 
