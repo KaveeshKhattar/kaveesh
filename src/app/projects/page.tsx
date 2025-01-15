@@ -5,19 +5,18 @@ import Halo from "../_components/Halo";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { FaGithub } from "react-icons/fa";
-import { useState } from "react";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Projects | Kaveesh Khattar",
-  description: "Built by Kaveesh Khattar",
-};
+import { useEffect, useState } from "react";
 
 export default function AllProjects() {
   const [currentDomain, setCurrentDomain] = useState("Web");
   const handleClick = (domainName: string) => {
     setCurrentDomain(domainName); // Update currentDomain when clicked
   };
+
+  useEffect(() => {
+    // Set the title dynamically based on currentDomain
+    document.title = `Projects | Kaveesh Khattar`; 
+  }, [currentDomain]); // This will run when currentDomain changes
 
   return (
     <div className="flex flex-col gap-8">
