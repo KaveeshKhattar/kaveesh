@@ -1,14 +1,123 @@
-<div className="animate-in">
-  <div className="text-3xl font-bold leading-tight tracking-tight text-primary">
-    Helping my Mom manage her tuition classes better.
-  </div>
-  <div className="text-muted-foreground">
-    shadCn UI and Algorithms
-  </div>
+<div className="animate-in prose">
+  <div className="flex flex-col gap-4">
+      <div className="text-3xl font-bold leading-tight tracking-tight text-primary">
+        Helping my Mom manage her tuition classes better.
+      </div>
+      <div className="text-muted-foreground">
+        shadCn UI and Algorithms
+      </div>
 
-  <div>
+    <div className="flex space-x-2">
+      <div className="">
+      <img src="/kaveesh.jpg" height={50} width={50} className="rounded-md"/>
+      </div>
+      <div>
+        <p>Kaveesh Khattar</p>
+        <p className="text-muted-foreground">Nov 09, 2024</p>
+      </div>
+    </div>
 
-<div></div>
+    <div className="flex flex-col gap-16">
+
+      <div>
+        <img src="/teachmate-banner.png" className="rounded-md w-[calc(100%+48px)] md:rounded-lg" />
+      </div>
+
+      <div className="flex flex-col gap-16">
+
+        <div className="flex flex-col gap-4">
+
+        <h2 className="text-xl font-semibold">The Problem Statement</h2>
+        <p>The problem was the inefficient tracking of student performance. Moreover, my Mom used to spend half an hour every Sunday in creating schedules for her students, leading to significant time consumption.</p>
+
+        </div>
+
+        <div className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold">Technology</h2>
+        <p>I wanted to explore some trending and emerging tools, so for this project, I chose Clerk for authentication, shadCN for the UI, Next.js for both the frontend and backend, and PostgreSQL for the database. After completing the development, I deployed the app to Vercel.</p>
+
+        <img src="/tech-stack-teachmate.png" className="rounded-md"/>
+        </div>
+
+        <div className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold">Idea and Proposal</h2>
+
+        <p>I wanted to build a platform that would improve the way class efficacy is tracked by using charts to display students' marks in school tests and tuition tests. This would help the teacher assess whether her methods are working, while also allowing parents to see the impact of the classes. This is where shadCN really shined.</p>
+
+        <p>Additionally, I aimed to solve the time-consuming task my mom faces in creating and adjusting schedules daily, especially when a student misses a class due to illness or other reasons and she has to go over the entire process all over again.</p>
+
+        <div className="flex flex-col gap-8">
+
+        <div className="flex flex-col gap-4">
+        <h3 className="text-md font-semibold"> Week 1: Setting the stage </h3>
+        <p>I started with listing the features and designing the schema for TeamFinder.</p>
+
+        <figure className="flex flex-col justify-center items-center">
+        <img src="/early-teachmate.jpg" className="rounded-md" />
+        <figcaption className="text-muted-foreground text-center">An early schema design of TeachMate</figcaption>
+        </figure>
+        </div>
+
+        <div className="flex flex-col gap-4">
+        <h3 className="text-md font-semibold"> Week 2: Setting up Authentication </h3>
+
+        <p>I used Clerk for authentication, and setting it up was a breeze. Not only could I implement authentication easily, but I also took advantage of the prebuilt UI components. I was able to add custom data to the user metadata as JSON. Overall, it was a great experience using Clerk. I look forward to setting up OAuth as well; I haven't done it yet due to not having a GCP account, but I'm excited to learn it.</p>
+
+        <figure className="flex flex-col justify-center items-center">
+        <img src="/clerk.png" className="rounded-md" />
+        <figcaption className="text-muted-foreground text-center">An early schema design of Clerk Authentication</figcaption>
+        </figure>
+
+        </div>
+
+        <div className="flex flex-col gap-4">
+        <h3 className="text-md font-semibold"> Week 3: Building the "Charts" feature</h3>
+
+        <p>I began by building the feature that allowed students to input their marks from school. Next, I implemented the functionality for teachers to add students' test marks from tuition. Finally, I integrated shadCN to display this data through animated, responsive charts.</p>
+
+        <figure className="flex flex-col justify-center items-center">
+        <img src="/charts.png" className="rounded-md" />
+        <figcaption className="text-muted-foreground text-center">An early schema design of Clerk Authentication</figcaption>
+        </figure>
+
+        </div>
+
+        <div className="flex flex-col gap-4">
+        <h3 className="text-md font-semibold"> Week 4: Building the "Schedule" feature </h3>
+
+        <p>Next, I focused on building the on-the-fly schedule creator, which was designed to automatically generate and update schedules based on changing conditions. I began by writing the backtracking logic to handle the basic scheduling constraints, followed by implementing dynamic programming (DP) logic to optimize the scheduling process and ensure efficiency.</p>
+
+        <p>After that, I integrated the scheduling functionality with the existing app, ensuring smooth data flow and functionality. Finally, I enhanced the user interface to make it more intuitive and user-friendly, providing a seamless experience for the teacher when managing schedules.</p>
+
+        <figure className="flex flex-col justify-center items-center">
+        <img src="/schedule.png" className="rounded-md" />
+        <figcaption className="text-muted-foreground text-center">An early schema design of Clerk Authentication</figcaption>
+        </figure>
+
+        </div>
+
+
+        <div className="flex flex-col gap-4">
+        <h3 className="text-md font-semibold"> Week 6: Testing & Deployment </h3>
+        <p>I tested my Next.js project by checking the functionality of both the frontend and backend, ensuring proper data flow between the UI (built with shadCN) and PostgreSQL database. I also validated the app's usability and responsiveness, and then deployed it to Vercel.</p>
+        </div>
+
+        </div>
+
+
+        </div>
+
+        <div className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold">The Final Result</h2>
+        <p>The project is now live <span className="underline text-muted-foreground"><a href="https://teachmate-murex.vercel.app/">here</a></span>, check it out! Building this project was a great learning experience and I still feel there is a lot more to learn in terms of the technicalities within Next.js and I look forward to learning them and sharing my learnings.</p>
+
+        <figure className="flex flex-col justify-center items-center space-y-2">
+          <img src="/teachmate-banner-results.png" className="rounded-md border-2 border-black" />
+          <figcaption className="text-center text-muted-foreground">TeachMate</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
 
   </div>
 </div>

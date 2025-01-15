@@ -1,14 +1,87 @@
-<div className="animate-in">
-  <div className="text-3xl font-bold leading-tight tracking-tight text-primary">
-    Lights, Camera, AI
-  </div>
-  <div className="text-muted-foreground">
-    Creating unique representations of real world entities using diffusion based GANs.
-  </div>
+<div className="animate-in prose">
+  <div className="flex flex-col gap-4">
+      <div className="text-3xl font-bold leading-tight tracking-tight text-primary">
+        Lights, Camera, AI
+      </div>
+      <div className="text-muted-foreground">
+        Creating unique representations of real world entities using diffusion based GANs.
+      </div>
 
-  <div>
+    <div className="flex space-x-2">
+      <div className="">
+      <img src="/kaveesh.jpg" height={50} width={50} className="rounded-md"/>
+      </div>
+      <div>
+        <p>Kaveesh Khattar</p>
+        <p className="text-muted-foreground">Oct 20, 2024</p>
+      </div>
+    </div>
 
-<div></div>
+    <div className="flex flex-col gap-16">
+
+      <div>
+        <img src="/l-c-ai.png" className="rounded-md w-[calc(100%+48px)] md:rounded-lg" />
+      </div>
+
+      <div className="flex flex-col gap-16">
+
+        <div className="flex flex-col gap-4">
+
+        <h2 className="text-xl font-semibold">The Problem Statement</h2>
+        <p>Generative Adversarial Networks (GANs), particularly Deep Fusion GANs (DF GANs), have demonstrated effectiveness in generating realistic images.</p>
+        <p>However, challenges remain in enabling the creation of unique, contextually accurate representations of objects, when guided by labelled inputs and script-based prompts.</p>
+        </div>
+
+        <div className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold">Our Idea and Proposal</h2>
+        <p>**1. Sourcing Images and performing transformation**</p>
+
+        <p>We curated a diverse dataset of high-resolution photographs featuring humans in various activities and objects across categories, preprocessing them to ensure compatibility with the pretrained DF-GAN.</p>
+
+        <p>Images were resized to 512x512 pixels, normalized, and annotated with context-relevant labels and tokens to guide the model in generating coherent, context-aware outputs.</p>
+
+        <p>**2. Train text encoder**</p>
+
+        <p>The key phase in training the model involves interpreting and using the provided labels, tokens, and textual prompts for scene generation. The text encoder must transform textual inputs into a format that can be combined with the image data to guide the model effectively.</p>
+
+        <p>Through iterative training, the text encoder refines its ability to extract relevant context from the input, enabling the model to understand the intended instructions. This results in a synergy between textual and visual modalities, ensuring the generated outputs are both contextually relevant and visually appealing.</p>
+
+        <p>**3. Train image encoder**</p>
+
+        <p>Training the image encoder follows the text encoder, where the model learns to extract visual features from pre-processed images. This phase ensures that the encoder identifies key details and patterns needed for the model to recognize the subject of the image.</p>
+
+        <p>By optimizing the image encoder alongside other DF-GAN components, the model learns to bind visual and textual information. The collaborative training between the image and text encoders ensures that the model generates coherent and contextually accurate representations.</p>
+
+        <p>**4. Prompt and epoch configurations for optimum outputs**</p>
+
+        <p>Optimizing image generation requires careful selection of text prompts and epoch configurations to guide the model in producing desired visual outcomes. Through iterative testing and adjustments, these parameters ensure high-quality, contextually relevant images that meet specific creative goals.</p>
+
+        <p>**5. Scene generation for prompts with multiple sentences**</p>
+
+        <p>Setting up multi-sentence prompts enables the model to generate coherent, context-rich narratives by guiding scene creation with sequential descriptions. This approach ensures the production of consistent, dynamic visuals that reflect the intended storyline or scenario.</p>
+
+        <figure className="flex flex-col justify-center items-center space-y-2">
+          <img src="/arch.png" className="rounded-md"/>
+          <figcaption className="text-center text-muted-foreground">The architecutre for scene creation</figcaption>
+          </figure>
+        </div>
+
+        <div className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold">The Final Result</h2>
+
+        <p>Experimental results show that the pre-trained DF-GAN effectively generates diverse, realistic object representations and extrapolates from unseen data using labeled photographs and distinguishing tokens. Additionally, the model successfully creates logically consistent scenarios based on short, script-based prompts.</p>
+
+        <figure className="flex flex-col justify-center items-center space-y-2">
+          <img src="/results.png" className="rounded-md"/>
+          <figcaption className="text-center text-muted-foreground">Before v/s After</figcaption>
+          </figure>
+
+          <p>We submitted our paper to Springer Series: Lecture Notes in Networks and Systems, for publication, and our paper was successfully published!</p>
+        </div>
+
+        
+      </div>
+    </div>
 
   </div>
 </div>
