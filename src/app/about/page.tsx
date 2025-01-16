@@ -132,10 +132,7 @@ export default function About() {
         </Section>
         <Section heading="Work" headingAlignment="left">
           <div className="flex flex-col gap-8">
-            <p>
-              I specialise in the Web, Distributed Systems & Machine Learning
-              and have a hobby for building iOS apps on the side but I am always
-              learning new things.
+            <p>I am a generalist software engineer with a focus on the Web and Machine Learning. I enjoy building iOS apps on the side and am constantly exploring new technologies.
             </p>
             <p>Here are some of the places I have worked.</p>
             <Workplaces items={processedWorkplaces} />
