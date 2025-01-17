@@ -46,7 +46,7 @@ const ConnectLinks: ConnectLink[] = [
   },
   {
     label: "Resume",
-    href: "/files/Resume.pdf",
+    href: "/files/Resume-research.pdf",
     icon: <IoPersonCircleOutline />,
   },
 ];
