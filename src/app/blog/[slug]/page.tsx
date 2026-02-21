@@ -1,9 +1,10 @@
 import fs from "fs";
 import path from "path";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import type { MDXComponents } from 'mdx/types';
+import { compile, run } from "@mdx-js/mdx";
+import type { MDXComponents } from "mdx/types";
+import type { ReactElement } from "react";
+import * as runtime from "react/jsx-runtime";
 
-// Define your MDX components
 const components: MDXComponents = {
   h1: ({ children }) => (
     <h1 className="text-3xl font-bold mt-8 mb-4">{children}</h1>
@@ -68,10 +69,20 @@ export default async function BlogPost({
   const { slug } = await params;
   const filePath = path.join(process.cwd(), "/public/content", `${slug}.mdx`);
   const content = fs.readFileSync(filePath, "utf8");
+  const compiled = await compile(content, {
+    outputFormat: "function-body",
+    development: false,
+  });
+  const { default: MDXContent } = (await run(String(compiled), {
+    ...runtime,
+    baseUrl: import.meta.url,
+  })) as {
+    default: (props: { components?: MDXComponents }) => ReactElement;
+  };
 
   return (
     <article className="max-w-[800px] mx-auto px-4">
-      <MDXRemote source={content} components={components} />
+      <MDXContent components={components} />
     </article>
   );
 }
