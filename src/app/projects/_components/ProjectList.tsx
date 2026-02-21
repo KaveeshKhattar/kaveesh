@@ -34,7 +34,7 @@ export default function ProjectList() {
       liveLink: "https://teachmate-murex.vercel.app/",
       gitHub: "https://github.com/KaveeshKhattar/teachmate",
       summary:
-        "Tracks students' performance and creates schedules for my Mom and her 15 students.",
+        "Class coordination made easier with real-time slot assignments and updates for over 15+ users.",
     },
     {
       slug: "disinformation",
