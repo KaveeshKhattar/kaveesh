@@ -51,7 +51,9 @@ const components: MDXComponents = {
 
 export async function generateStaticParams() {
   const postsDirectory = path.join(process.cwd(), "/public/content");
-  const filenames = fs.readdirSync(postsDirectory);
+  const filenames = fs
+    .readdirSync(postsDirectory)
+    .filter((filename) => filename.toLowerCase().endsWith(".mdx"));
 
   return filenames.map((filename) => ({
     slug: filename.replace(/\.mdx$/, ""),
