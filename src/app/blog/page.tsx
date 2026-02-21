@@ -52,36 +52,42 @@ const blogs = [
     title: "Solan",
     summary: "Why should students only come up with the answers?",
     date: "2019-01-20",
+    tag: "Project"
   },
   {
     id: "teamfinder",
     title: "TeamFinder",
     summary: "Combining Tinder & Loopt for team finding",
     date: "2022-04-15",
+    tag: "Project",
   },
   {
     id: "swiftui",
     title: "iOS",
     summary: "Taming Apple's bald eagle",
     date: "2021-10-18",
+    tag: "Project",
   },
   {
     id: "teachmate",
     title: "TeachMate",
-    summary: "Helping my Mom manage her tuition classes better.",
+    summary: "Helping my Mom manage her tuition classes better",
     date: "2024-11-09",
+    tag: "Project",
   },
   {
     id: "disinformation",
     title: "Understanding the Psychological Needs at Play in Disinformation",
     summary: "NLP & Maslow's Human Needs Theory",
     date: "2023-06-30",
+    tag: "ml",
   },
   {
     id: "comparative-analysis",
     title: "Analysis-Paralysis",
     summary: "Analysis-Paralysis",
     date: "2023-12-30",
+    tag: "ml",
   },
   {
     id: "text-to-scene",
@@ -89,5 +95,7 @@ const blogs = [
       "Exploring Novel Image Generation via Script-Directed Scene Formation",
     summary: "Lights, Camera, AI",
     date: "2024-10-20",
+    tag: "ml",
   },
+  
 ];

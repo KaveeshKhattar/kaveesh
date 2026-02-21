@@ -83,9 +83,7 @@ export default function About() {
             </p>
 
             <p>
-              I got into Computer Science at age 8 through the iPhone which led
-              me into a career in tech. I&apos;ve recently began working as a
-              software engineer, but have been coding for the past 6 years!
+            I got into Computer Science at age 9 when configuring our dial-up modem to the Pentium desktop so I could Skype my friend in New Jersey. This led me to a career in tech and I recently began working as a software engineer, but I&apos;ve been coding for the past 6 years.
             </p>
 
             <p>
