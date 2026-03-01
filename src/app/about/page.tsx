@@ -3,6 +3,8 @@ import { Metadata } from "next";
 import Image from "next/image";
 import scarface from "../../../public/Scarface.png";
 import home from "../../../public/Home.png";
+import presentation from "../../../public/presentation.jpg";
+import myself from "../../../public/myself.jpeg";
 import Gallery from "./_components/Gallery";
 import Section from "../_components/Section";
 import ConnectLinks from "../_components/ConnectLinks";
@@ -42,8 +44,8 @@ export default function About() {
           style={{ "--index": 1 } as React.CSSProperties}
         >
           <Image
-            src={scarface}
-            alt={"scarface"}
+            src={myself}
+            alt={"myself"}
             width={324}
             height={139}
             className="pointer-events-none relative inset-0 h-52 w-60 -rotate-6 rounded-xl bg-neutral-400 object-cover object-right shadow-md"
@@ -56,7 +58,7 @@ export default function About() {
           style={{ "--index": 2 } as React.CSSProperties}
         >
           <Image
-            src={home}
+            src={presentation}
             alt={"home"}
             width={220}
             height={260}
@@ -77,13 +79,11 @@ export default function About() {
         <Section heading="About" headingAlignment="left">
           <div className="flex flex-col gap-6">
             <p>
-              Hey, I&apos;m Kaveesh Khattar! Originally from Delhi, I&apos;ve
-              been born and raised in Bangalore with a stint in Mumbai as
-              well.
+              Hey, I&apos;m Kaveesh Khattar! Originally from Delhi, I was born and raised in Bangalore, with five years spent in Mumbai.
             </p>
 
             <p>
-            I got into Computer Science at age 9 when configuring our dial-up modem to the Pentium desktop so I could Skype my friend in New Jersey. This led me to a career in tech and I recently began working as a software engineer, but I&apos;ve been coding for the past 6 years.
+            I got into Computer Science through hands-on experimentation with home networking and early internet setups. That curiosity eventually grew into a deeper interest in building software.
             </p>
 
             <p>
@@ -130,9 +130,9 @@ export default function About() {
         </Section>
         <Section heading="Work" headingAlignment="left">
           <div className="flex flex-col gap-8">
-            <p>I am a generalist software engineer with a focus on the Web and Machine Learning. I enjoy building iOS apps on the side and am constantly exploring new technologies.
+            <p>I am a generalist software engineer with a focus on infrastructure and observability. I enjoy building iOS apps on the side and am constantly exploring new technologies.
             </p>
-            <p>Here are some of the places I have worked.</p>
+            <p>Here are some of the places I have worked:</p>
             <Workplaces items={processedWorkplaces} />
           </div>
         </Section>

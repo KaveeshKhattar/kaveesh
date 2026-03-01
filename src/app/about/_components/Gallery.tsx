@@ -7,6 +7,15 @@ import clsx from "clsx";
 
 import scarface from "../../../../public/Scarface.png";
 import home from "../../../../public/Home.png";
+import presentation from "../../../../public/presentation.jpg";
+import about01 from "../../../../public/about-01.jpg";
+import about02 from "../../../../public/about-02.jpeg";
+import about03 from "../../../../public/about-03.jpeg";
+import about04 from "../../../../public/about-04.jpeg";
+import about05 from "../../../../public/about-05.jpeg";
+import about06 from "../../../../public/about-06.jpeg";
+import about07 from "../../../../public/about-07.jpeg";
+import myself from "../../../../public/myself.jpeg";
 import dusk from "../../../../public/Dusk.png";
 import coorg from "../../../../public/Coorg.png";
 import Halo from "@/app/_components/Halo";
@@ -128,27 +137,38 @@ export default function Gallery() {
     <>
       <section className="flex gap-4 h-[268px] relative">
         <Photo
+          src={presentation}
+          meta="Cisco!"
+          alt="home"
+          width={360}
+          height={250}
+          rotate={-3}
+          left={-60}
+          index={2}
+          flipDirection="left"
+        />
+        <Photo
+          src={myself}
+          meta=""
+          alt="home"
+          width={250}
+          height={250}
+          rotate={0}
+          left={300}
+          index={3}
+          flipDirection="right"
+        />
+        {/* <Photo
           src={scarface}
           meta="2023-12-23"
           alt="scarface"
           width={324}
           height={239}
           rotate={-6}
-          left={-56}
+          left={500}
           index={1}
-        />
-        <Photo
-          src={home}
-          meta="2022-06-15"
-          alt="home"
-          width={230}
-          height={250}
-          rotate={6.3}
-          left={160}
-          index={2}
-          flipDirection="left"
-        />
-        <Photo
+        /> */}
+        {/* <Photo
           src={dusk}
           meta="2024-01-18"
           alt="dusk"
@@ -156,9 +176,9 @@ export default function Gallery() {
           height={235}
           rotate={-5.4}
           left={280}
-          index={3}
-        />
-        <Photo
+          index={2}
+        /> */}
+        {/* <Photo
           src={coorg}
           meta="2023-12-20"
           alt={"Coorg"}
@@ -166,9 +186,21 @@ export default function Gallery() {
           height={260}
           rotate={7.6}
           left={500}
-          index={4}
+          index={3}
           flipDirection="left"
+        /> */}
+        <Photo
+          src={about06}
+          meta="Clubs!"
+          alt="home"
+          width={360}
+          height={250}
+          rotate={3}
+          left={550}
+          index={3}
+          flipDirection="right"
         />
+        
       </section>
     </>
   );

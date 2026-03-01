@@ -97,5 +97,21 @@ const blogs = [
     date: "2024-10-20",
     tag: "ml",
   },
+  // {
+  //   id: "azure-dr",
+  //   title:
+  //     "Exploring Novel Image Generation via Script-Directed Scene Formation",
+  //   summary: "azure dr",
+  //   date: "2024-10-20",
+  //   tag: "ml",
+  // },
+  // {
+  //   id: "postgres-dr",
+  //   title:
+  //     "Exploring Novel Image Generation via Script-Directed Scene Formation",
+  //   summary: "Postgres dr",
+  //   date: "2024-10-20",
+  //   tag: "ml",
+  // },
   
 ];

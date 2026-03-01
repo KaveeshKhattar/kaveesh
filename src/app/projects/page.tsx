@@ -32,23 +32,27 @@ export default function AllProjects() {
         </p>
       </div>
 
-      <div className="animate-in flex justify-center gap-1">
+      {/* Segmented control filter */}
+      <div className="animate-in flex justify-center gap-2">
         {domains.map((domain) => (
-          <div
+          <button
             key={domain.name}
+            type="button"
             onClick={() => handleClick(domain.name)}
-            className={`${
-              currentDomain === domain.name ? "text-primary" : "text-[#71717a]"
-            } relative rounded-lg px-3 py-1.5 text-sm transition-colors cursor-pointer`}
-            style={{
-              WebkitTapHighlightColor: "transparent",
-            }}
+            className={`
+              px-4 py-2 rounded-lg font-medium text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
+              ${currentDomain === domain.name
+                ? "bg-primary text-primary-foreground shadow"
+                : "bg-secondary text-muted-foreground hover:bg-accent hover:text-accent-foreground"}
+            `}
+            aria-pressed={currentDomain === domain.name}
           >
             {domain.name}
-          </div>
+          </button>
         ))}
       </div>
 
+      {/* Projects grid */}
       {currentDomain === "Web" ? (
         <div className="animate-in grid md:grid-cols-2 gap-4">
           {webProjects.map((project) => (
