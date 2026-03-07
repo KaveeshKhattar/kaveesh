@@ -144,7 +144,7 @@ export default function Gallery() {
           height={250}
           rotate={-3}
           left={-60}
-          index={2}
+          index={1}
           flipDirection="left"
         />
         <Photo
@@ -155,7 +155,7 @@ export default function Gallery() {
           height={250}
           rotate={0}
           left={300}
-          index={3}
+          index={2}
           flipDirection="right"
         />
         {/* <Photo
