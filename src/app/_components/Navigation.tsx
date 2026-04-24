@@ -29,10 +29,6 @@ export default function Navigation() {
       title: "Publications",
     },
     {
-      path: "/patents",
-      title: "Patents",
-    },
-    {
       path: "/open-source",
       title: "Open Source",
     },
