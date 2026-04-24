@@ -108,7 +108,7 @@ export default function About() {
 
         <Section heading="Education" headingAlignment="left">
           <div className="flex flex-col gap-8">
-            <p>I am currently pursuing an M.S. in Computer Science at NYU, with a focus on systems and ML infrastructure.</p>
+            {/* <p>I am currently pursuing an M.S. in Computer Science at NYU, with a focus on systems and ML infrastructure.</p> */}
             <EducationList items={processedEducation} />
           </div>
         </Section>
@@ -182,7 +182,13 @@ const workplaces = [
 ];
 
 const education = [
-  
+  // {
+  //   degree: "Master of Science in Computer Science",
+  //   institution: "New York University",
+  //   date: "Sep 2026 - May 2028",
+  //   imageSrc: nyu,
+  //   link: "https://www.nyu.edu/",
+  // },
   {
     degree: "Bachelor of Technology in Computer Science",
     institution: "PES University",
