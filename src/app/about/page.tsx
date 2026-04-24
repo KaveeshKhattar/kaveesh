@@ -109,6 +109,7 @@ export default function About() {
         <Section heading="Education" headingAlignment="left">
           <div className="flex flex-col gap-8">
             {/* <p>I am currently pursuing an M.S. in Computer Science at NYU, with a focus on systems and ML infrastructure.</p> */}
+            I have graduated from PES University with a specialisation in Machine Intelligence and Data Science.
             <EducationList items={processedEducation} />
           </div>
         </Section>
