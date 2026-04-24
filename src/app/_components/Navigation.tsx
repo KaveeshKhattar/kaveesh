@@ -29,12 +29,12 @@ export default function Navigation() {
       title: "Publications",
     },
     {
-      path: "/open-source",
-      title: "Open Source",
-    },
-    {
       path: "/certificates",
       title: "Certificates",
+    },
+    {
+      path: "/open-source",
+      title: "Open Source",
     },
     {
       path: "/blog",

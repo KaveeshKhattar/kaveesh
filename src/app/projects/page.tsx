@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { FaGithub } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import Section from "../_components/Section";
+import { motion } from "framer-motion";
 
 export default function AllProjects() {
   const [currentDomain, setCurrentDomain] = useState("Web");
@@ -16,8 +17,16 @@ export default function AllProjects() {
 
   const activeProjects = currentDomain === "Web" ? webProjects : iOSProjects;
 
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
   return (
-    <div className="flex flex-col gap-16 md:gap-24">
+    <div className="flex flex-col gap-16 md:gap-8">
       <div>
         <h1 className="animate-in text-3xl font-bold tracking-tight text-primary">
           Projects
@@ -31,26 +40,44 @@ export default function AllProjects() {
       </div>
 
       {/* Segmented control filter */}
-      <div className="animate-in flex justify-center gap-2">
-        {domains.map((domain) => (
-          <button
-            key={domain.name}
-            type="button"
-            onClick={() => setCurrentDomain(domain.name)}
-            className={`
-              px-4 py-2 rounded-lg font-medium text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
-              ${
-                currentDomain === domain.name
-                  ? "bg-primary text-primary-foreground shadow"
-                  : "bg-secondary text-muted-foreground hover:bg-accent hover:text-accent-foreground"
-              }
-            `}
-            aria-pressed={currentDomain === domain.name}
-          >
-            {domain.name}
-          </button>
-        ))}
-      </div>
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.1 }}
+        className="flex justify-center gap-6 border-b border-border"
+      >
+        <div className="flex justify-center gap-6 border-b border-border">
+          {domains.map((domain) => {
+            const isActive = currentDomain === domain.name;
+
+            return (
+              <button
+                key={domain.name}
+                onClick={() => setCurrentDomain(domain.name)}
+                className="relative pb-2 text-sm font-medium transition-transform active:scale-95"
+              >
+                <span
+                  className={
+                    isActive
+                      ? "text-primary"
+                      : "text-muted-foreground hover:text-primary"
+                  }
+                >
+                  {domain.name}
+                </span>
+
+                {isActive && (
+                  <motion.span
+                    layoutId="underline"
+                    className="absolute left-0 right-0 -bottom-[1px] h-[2px] bg-primary rounded-full"
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  />
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </motion.div>
 
       {/* Projects list — OSS-style */}
       <div className="animate-in flex flex-col gap-8">
@@ -85,9 +112,6 @@ export default function AllProjects() {
                     </video>
                   </div>
                 )}
-                <span className="text-sm font-mono leading-tight text-pretty text-primary text-center">
-                  {project.title}
-                </span>
               </div>
             }
           >
@@ -127,13 +151,9 @@ export default function AllProjects() {
                   </Link>
                 )}
 
-                {"slug" in project && (
+                {project.hasBlog && (
                   <Link href={`/blog/${project.slug}`}>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="flex items-center gap-2"
-                    >
+                    <Button variant="outline" size="sm" className="flex items-center gap-2">
                       <span>Blog</span>
                     </Button>
                   </Link>
@@ -162,6 +182,7 @@ const webProjects = [
     domain: "web",
     liveLink: "https://kaveeshkhattar.pythonanywhere.com",
     gitHub: "https://github.com/KaveeshKhattar/Solan",
+    hasBlog: true,
     summary:
       "Crowd-sourced question bank builder to enhance learning with over 60+ visitors.",
   },
@@ -172,6 +193,7 @@ const webProjects = [
     domain: "web",
     liveLink: "https://teamfinder-frontend.vercel.app/",
     gitHub: "https://github.com/KaveeshKhattar/TeamFinder",
+    hasBlog: true,
     summary:
       "Don't let your inner circle hold you back from participating in hackathons.",
   },
@@ -182,6 +204,7 @@ const webProjects = [
     domain: "web",
     liveLink: "https://teachmate-murex.vercel.app/",
     gitHub: "https://github.com/KaveeshKhattar/teachmate",
+    hasBlog: true,
     summary:
       "Tracks students' performance and creates schedules for my Mom and her 15 students.",
   },
@@ -194,6 +217,7 @@ const iOSProjects = [
     poster: "/iOS/posters/01-WeSplit.png",
     title: "WeSplit",
     domain: "iOS",
+    hasBlog: false,
     gitHub:
       "https://github.com/KaveeshKhattar/100DaysOfSwiftUI/tree/main/01-WeSplit",
     summary: "A check-splitting app.",
@@ -204,6 +228,7 @@ const iOSProjects = [
     poster: "/iOS/posters/02-GuessTheFlag.png",
     title: "Guess The Flag",
     domain: "iOS",
+    hasBlog: false,
     gitHub:
       "https://github.com/KaveeshKhattar/100DaysOfSwiftUI/tree/main/02-GuessTheFlag",
     summary:
@@ -215,6 +240,7 @@ const iOSProjects = [
     poster: "/iOS/posters/04-BetterRest.png",
     title: "BetterRest",
     domain: "iOS",
+    hasBlog: false,
     gitHub:
       "https://github.com/KaveeshKhattar/100DaysOfSwiftUI/tree/main/04-BetterRest",
     summary:
@@ -226,6 +252,7 @@ const iOSProjects = [
     poster: "/iOS/posters/05-WordScramble.png",
     title: "WordScramble",
     domain: "iOS",
+    hasBlog: false,
     gitHub:
       "https://github.com/KaveeshKhattar/100DaysOfSwiftUI/tree/main/05-WordScramble",
     summary:
@@ -237,6 +264,7 @@ const iOSProjects = [
     poster: "/iOS/posters/07-iExpense.png",
     title: "iExpense",
     domain: "iOS",
+    hasBlog: false,
     gitHub:
       "https://github.com/KaveeshKhattar/100DaysOfSwiftUI/tree/main/07-iExpense",
     summary:
@@ -248,6 +276,7 @@ const iOSProjects = [
     poster: "/iOS/posters/08-Moonshot.png",
     title: "Moonshot",
     domain: "iOS",
+    hasBlog: false,
     gitHub:
       "https://github.com/KaveeshKhattar/100DaysOfSwiftUI/tree/main/08-Moonshot",
     summary:
@@ -259,6 +288,7 @@ const iOSProjects = [
     poster: "/iOS/posters/10-CupcakeCorner.png",
     title: "Cupcake Corner",
     domain: "iOS",
+    hasBlog: false,
     gitHub:
       "https://github.com/KaveeshKhattar/100DaysOfSwiftUI/tree/main/10-CupcakeCorner",
     summary: "A multi-screen app for ordering cupcakes.",
@@ -269,6 +299,7 @@ const iOSProjects = [
     poster: "/iOS/posters/11-Bookworm.png",
     title: "Bookworm",
     domain: "iOS",
+    hasBlog: false,
     gitHub:
       "https://github.com/KaveeshKhattar/100DaysOfSwiftUI/tree/main/11-Bookworm",
     summary: "An app to track which books you've read and what you thought of them.",
