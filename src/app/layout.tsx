@@ -22,7 +22,7 @@ export default function RootLayout({
       >
         <Providers>
           <Navigation />
-          <div className="mx-auto max-w-[850px] px-6 pb-24 pt-16 md:px-6 md:pb-44 md:pt-20">
+          <div className="mx-auto max-w-[950px] px-6 pb-24 pt-16 md:px-6 md:pb-44 md:pt-20">
             {children}
           </div>
         </Providers>

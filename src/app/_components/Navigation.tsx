@@ -29,6 +29,18 @@ export default function Navigation() {
       title: "Publications",
     },
     {
+      path: "/patents",
+      title: "Patents",
+    },
+    {
+      path: "/open-source",
+      title: "Open Source",
+    },
+    {
+      path: "/certificates",
+      title: "Certificates",
+    },
+    {
       path: "/blog",
       title: "Blog",
     },
@@ -37,7 +49,7 @@ export default function Navigation() {
   return (
     <>
       <header className="md:mt-6">
-        <nav className="mx-auto flex max-w-[850px] items-center justify-between gap-3 px-4 py-3 md:px-6">
+        <nav className="mx-auto flex max-w-[950px] items-center justify-between gap-3 px-4 py-3 md:px-6">
           <Link href="/" className="shrink-0 text-primary md:block">
             <div>
               <svg

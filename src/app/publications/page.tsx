@@ -1,15 +1,22 @@
 import Link from "next/link";
-import Halo from "../_components/Halo";
+import { formatDate } from "../_utils/formateDate";
+import Section from "../_components/Section";
+import { Metadata } from "next";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Publications | Kaveesh Khattar",
   description: "Built by Kaveesh Khattar",
 };
 
-export default function AllPublications() {
+type Publication = (typeof publications)[number];
+
+export default function Publications() {
+  const items: Publication[] = [...publications].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+
   return (
     <div className="flex flex-col gap-16 md:gap-24">
       <div>
@@ -23,87 +30,94 @@ export default function AllPublications() {
           Trying to make a dent in the universe.
         </p>
       </div>
-      <div className="animate-in grid md:grid-cols-2 gap-4">
-        {allPublications.map((publication) => (
-          <div
-            key={publication.slug}
-            className="space-y-4 bg-secondary p-4 rounded-md"
+
+      <div className="animate-in flex flex-col gap-8">
+        {items.map((item: Publication) => (
+          <Section
+            key={item.slug}
+            heading={item.journal}
+            headingAlignment="left"
+            leading={
+              <div className="flex flex-col items-center gap-2">
+                <span className="text-sm font-mono leading-tight text-pretty text-primary text-center">
+                  {item.journal}
+                </span>
+
+                <div className="flex gap-2 hidden md:flex">
+                  <Link href={item.paper} target="_blank">
+                    <Button variant="outline" size="sm">
+                      Paper
+                    </Button>
+                  </Link>
+
+                  <Link href={`/blog/${item.slug}`}>
+                    <Button size="sm">Blog</Button>
+                  </Link>
+                </div>
+              </div>
+            }
           >
-            <div className="aspect-video overflow-hidden rounded-md bg-secondary">
-              <Halo strength={10}>
-                <Image
-                  src={publication.image}
-                  alt={publication.title}
-                  fill
-                  className="h-full w-full object-cover"
-                />
-              </Halo>
-            </div>
-
-            <div className="flex-col space-y-4">
-              <div>
-                <p className="font-medium leading-tight">{publication.title}</p>
-                <p className="text-muted-foreground">{publication.summary}</p>
+            <div className="flex flex-1 flex-col gap-2">
+              <div className="flex flex-col gap-1">
+                <span className="font-medium leading-tight text-pretty">
+                  {item.title}
+                </span>
+                <span className="text-sm text-muted-foreground text-pretty">
+                  {item.summary}
+                </span>
               </div>
 
-              <div className="flex justify-between space-x-2">
-                <Link
-                  href={publication.paper}
-                  target="_blank"
-                  className="w-full"
-                >
-                  <Button className="w-full border-2 border-primary text-primary bg-inherit hover:bg-secondary">
-                    <div className="flex items-center space-x-2 text-md">
-                      <svg
-                        className="w-6 h-6 text-gray-800 dark:text-white"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M12 6.03v13m0-13c-2.819-.831-4.715-1.076-8.029-1.023A.99.99 0 0 0 3 6v11c0 .563.466 1.014 1.03 1.007 3.122-.043 5.018.212 7.97 1.023m0-13c2.819-.831 4.715-1.076 8.029-1.023A.99.99 0 0 1 21 6v11c0 .563-.466 1.014-1.03 1.007-3.122-.043-5.018.212-7.97 1.023"
-                        />
-                      </svg>
-                      <p>Paper</p>
-                    </div>
-                  </Button>
-                </Link>
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <span className="text-xs text-muted-foreground">
+                  {formatDate(item.date)}
+                </span>
 
-                <Link href={`/blog/${publication.slug}`} className="w-full">
-                  <Button className="w-full">Blog</Button>
-                </Link>
+                <div className="flex gap-2 md:hidden">
+                  <Link href={item.paper} target="_blank">
+                    <Button variant="outline" size="sm">
+                      Paper
+                    </Button>
+                  </Link>
+
+                  <Link href={`/blog/${item.slug}`}>
+                    <Button size="sm">Blog</Button>
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
+          </Section>
         ))}
       </div>
     </div>
   );
 }
 
-const allPublications = [
+const publications = [
   {
     slug: "disinformation",
     image: "/disinformation.png",
-    title: "Psychological Needs at Play in Disinformation",
+    title: "Understanding the Psychological Needs at Play in Disinformation",
     paper: "/files/disinformation.pdf",
     summary:
       "Paper on motivations behind misleading content on social media using Maslow's Theory.",
+    date: "2024-09-30",
+    journal: "SSIC 2023 (Springer SIST)",
+    authors: "Kaveesh Khattar, Bhaskarjyoti Das",
+    journalLink: "https://doi.org/10.1007/978-981-97-1322-2_1",
   },
   {
     slug: "comparative-analysis",
     image: "/comparative-analysis.png",
-    title: "Advancements in Text-to-Image Generation",
+    title:
+      "Advancements in Text-to-Image Generation: A Comparative Study of Model Architectures, Datasets, and Performance Metrics",
     paper: "/files/comparative-analysis.pdf",
     summary:
       "Comparative analysis of text-to-image models, providing an overview of their capabilities.",
+    date: "2024-01-15",
+    journal: "CEUR-WS.org (Vol-3706)",
+    authors:
+      "Tejas Goyal, Kaveesh Khattar, Kubtoor Patel Dhruv, Aditya Hombal, Mamatha Hosalli Ramappa",
+    journalLink: "https://ceur-ws.org/Vol-3706/Paper5",
   },
   {
     slug: "text-to-scene",
@@ -113,5 +127,11 @@ const allPublications = [
     paper: "/files/text-to-scene.pdf",
     summary:
       "Create unique representations of real world entities using diffusion based GANs.",
+    date: "2025-08-30",
+    journal:
+      "CoMeSySo 2024 (Springer LNNS)",
+    authors:
+      "Kaveesh Khattar, Tejas Goyal, K. P. Dhruv, Aditya Hombal, H. R. Mamatha",
+    journalLink: "https://doi.org/10.1007/978-3-031-78934-8_45",
   },
-];
+] as const;

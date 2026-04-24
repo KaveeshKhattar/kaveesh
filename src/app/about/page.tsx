@@ -1,6 +1,6 @@
 // import Image from "next/image";
 import { Metadata } from "next";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import scarface from "../../../public/Scarface.png";
 import home from "../../../public/Home.png";
 import presentation from "../../../public/presentation.jpg";
@@ -10,8 +10,11 @@ import Section from "../_components/Section";
 import ConnectLinks from "../_components/ConnectLinks";
 import Link from "next/link";
 import Workplaces from "./_components/Workplaces";
+import EducationList from "./_components/Education";
 import att from "../../../public/att.jpg";
 import myelin from "../../../public/myelin.png";
+import pes from "../../../public/pes.png";
+import nyu from "../../../public/nyu.jpg";
 
 export const metadata: Metadata = {
   title: "About | Kaveesh Khattar",
@@ -22,6 +25,10 @@ export default function About() {
   const processedWorkplaces = workplaces.map((workplace) => ({
     ...workplace,
     date: workplace.date.replace(" ", "\u00A0"), // Non-breaking space
+  }));
+  const processedEducation = education.map((item) => ({
+    ...item,
+    date: item.date?.replace(" ", "\u00A0"), // Non-breaking space
   }));
 
   return (
@@ -98,6 +105,22 @@ export default function About() {
           </div>
         </Section>
 
+
+        <Section heading="Education" headingAlignment="left">
+          <div className="flex flex-col gap-8">
+            <p>I am currently pursuing an M.S. in Computer Science at NYU, with a focus on systems and ML infrastructure.</p>
+            <EducationList items={processedEducation} />
+          </div>
+        </Section>
+
+        <Section heading="Work" headingAlignment="left">
+          <div className="flex flex-col gap-8">
+          <p>I am a generalist software engineer with a focus on infrastructure and observability. I enjoy building iOS apps on the side and am constantly exploring new technologies.</p>
+          <p>Here are some of the places I have worked:</p>
+            <Workplaces items={processedWorkplaces} />
+          </div>
+        </Section>
+
         <Section heading="Connect" headingAlignment="left">
           <ul className="animated-list grid flex-grow grid-cols-1 gap-3 md:grid-cols-2">
             {ConnectLinks.map((link) => (
@@ -128,14 +151,7 @@ export default function About() {
             ))}
           </ul>
         </Section>
-        <Section heading="Work" headingAlignment="left">
-          <div className="flex flex-col gap-8">
-            <p>I am a generalist software engineer with a focus on infrastructure and observability. I enjoy building iOS apps on the side and am constantly exploring new technologies.
-            </p>
-            <p>Here are some of the places I have worked:</p>
-            <Workplaces items={processedWorkplaces} />
-          </div>
-        </Section>
+        
       </div>
     </div>
   );
@@ -143,7 +159,7 @@ export default function About() {
 
 const workplaces = [
   {
-    title: "Senior Associate Software Engineer",
+    title: "Software Engineer",
     company: "AT&T",
     date: "Jul 2024 - ",
     imageSrc: att,
@@ -163,4 +179,21 @@ const workplaces = [
     imageSrc: myelin,
     link: "https://www.myelinfoundry.com/",
   },
+];
+
+const education = [
+  {
+    degree: "Master of Science in Computer Science",
+    institution: "New York University",
+    date: "Sep 2026 - May 2028",
+    imageSrc: nyu,
+    link: "https://www.nyu.edu/",
+  },
+  {
+    degree: "Bachelor of Technology in Computer Science",
+    institution: "PES University",
+    date: "Dec 2020 - May 2024",
+    imageSrc: pes,
+    link: "https://pes.edu/",
+  }
 ];

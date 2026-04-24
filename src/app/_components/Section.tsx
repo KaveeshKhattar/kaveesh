@@ -6,12 +6,14 @@ import clsx from "clsx";
 type SectionProps = {
   heading: string;
   headingAlignment?: "right" | "left";
+  leading?: ReactNode;
   children: ReactNode;
 };
 
 export default function Section({
   heading,
   headingAlignment,
+  leading,
   children,
 }: SectionProps) {
   return (
@@ -19,14 +21,25 @@ export default function Section({
       className="col-reverse flex flex-col gap-2 md:flex-row md:gap-9"
       id={heading.toLowerCase().replace(/\s/g, "-")}
     >
-      <h2
-        className={clsx(
-          "shrink-0 text-muted-foreground md:w-32",
-          headingAlignment === "right" && "md:text-right",
-        )}
-      >
-        {heading}
-      </h2>
+      {leading ? (
+        <div
+          className={clsx(
+            "shrink-0 text-muted-foreground md:w-32",
+            headingAlignment === "right" && "md:text-right",
+          )}
+        >
+          {leading}
+        </div>
+      ) : (
+        <h2
+          className={clsx(
+            "shrink-0 text-muted-foreground md:w-32",
+            headingAlignment === "right" && "md:text-right",
+          )}
+        >
+          {heading}
+        </h2>
+      )}
       {children}
     </section>
   );

@@ -13,7 +13,7 @@ import about02 from "../../../../public/about-02.jpeg";
 import about03 from "../../../../public/about-03.jpeg";
 import about04 from "../../../../public/about-04.jpeg";
 import about05 from "../../../../public/about-05.jpeg";
-import about06 from "../../../../public/about-06.jpeg";
+import talk from "../../../../public/talks.jpeg";
 import about07 from "../../../../public/about-07.jpeg";
 import myself from "../../../../public/myself.jpeg";
 import dusk from "../../../../public/Dusk.png";
@@ -190,7 +190,7 @@ export default function Gallery() {
           flipDirection="left"
         /> */}
         <Photo
-          src={about06}
+          src={talk}
           meta="Clubs!"
           alt="home"
           width={360}

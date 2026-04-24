@@ -18,7 +18,7 @@ export default function Home() {
       <div className="flex flex-col gap-8">
         <div className="space-y-4">
           <h1 className="animate-in text-3xl font-semibold">
-            hey, Kaveesh here!
+            Hey, Kaveesh here!
           </h1>
           <p className="animate-in text-muted-foreground md:w-3/4">
             I&apos;m a software engineer in Bangalore with an interest in using technology to solve problems I come across in my world.

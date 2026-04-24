@@ -19,15 +19,15 @@ function Workplace({ title, company, imageSrc, date, link }: Workplace) {
       <div className="flex justify-between w-full gap-4">
         
         <div className="flex space-x-2">
-          <div>
-            <Image
-              src={imageSrc}
-              alt={company}
-              width={48}
-              height={48}
-              className={clsx("rounded-md")}
-            />
-          </div>
+        <div className="flex-shrink-0">
+  <Image
+    src={imageSrc}
+    alt={company}
+    width={48}
+    height={48}
+    className="rounded-md object-contain"
+  />
+</div>
 
           <div className="flex flex-col gap-px">
             <p className={link ? "external-arrow" : ""}>{title}</p>
@@ -39,6 +39,7 @@ function Workplace({ title, company, imageSrc, date, link }: Workplace) {
         {startMonth}
             <span>&nbsp;</span>
             {startYear}
+            <span>&nbsp;</span>
             {_hyphen}
             <span>&nbsp;</span>
             {endMonth}
