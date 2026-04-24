@@ -182,13 +182,13 @@ const workplaces = [
 ];
 
 const education = [
-  {
-    degree: "Master of Science in Computer Science",
-    institution: "New York University",
-    date: "Sep 2026 - May 2028",
-    imageSrc: nyu,
-    link: "https://www.nyu.edu/",
-  },
+  // {
+  //   degree: "Master of Science in Computer Science",
+  //   institution: "New York University",
+  //   date: "Sep 2026 - May 2028",
+  //   imageSrc: nyu,
+  //   link: "https://www.nyu.edu/",
+  // },
   {
     degree: "Bachelor of Technology in Computer Science",
     institution: "PES University",
