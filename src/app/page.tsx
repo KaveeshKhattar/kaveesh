@@ -40,7 +40,7 @@ export default function Home() {
             className="animate-in text-muted-foreground md:w-3/4 leading-relaxed"
             style={{ "--index": 2 } as React.CSSProperties}
           >
-            I'm a software engineer focused on building AI infrastructure and currently working on cloud-native systems.
+            I'm a software engineer currently working on cloud-native systems and exploring AI infrastructure for inference workloads.
           </p>
         </div>
 
