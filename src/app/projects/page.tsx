@@ -8,22 +8,34 @@ import { useEffect, useState } from "react";
 import Section from "../_components/Section";
 import { motion } from "framer-motion";
 
+const ALL_DOMAINS = "All";
+
+const domains = [{ name: "Web" }, { name: "iOS" }];
+
+const uniqueDomains = [
+  ALL_DOMAINS,
+  ...domains.map((d) => d.name),
+];
+
 export default function AllProjects() {
-  const [currentDomain, setCurrentDomain] = useState("Web");
+  const [activeFilter, setActiveFilter] = useState<string>(ALL_DOMAINS);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     document.title = `Projects | Kaveesh Khattar`;
-  }, [currentDomain]);
-
-  const activeProjects = currentDomain === "Web" ? webProjects : iOSProjects;
-
-  const [mounted, setMounted] = useState(false);
+  }, []);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   if (!mounted) return null;
+
+  const allProjects = [...webProjects, ...iOSProjects];
+  const activeProjects =
+    activeFilter === ALL_DOMAINS
+      ? allProjects
+      : allProjects.filter((p) => p.domain === activeFilter);
 
   return (
     <div className="flex flex-col gap-16 md:gap-8">
@@ -39,47 +51,31 @@ export default function AllProjects() {
         </p>
       </div>
 
-      {/* Segmented control filter */}
+      {/* Filter pills — same style as OSS page */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
-        className="flex justify-center gap-6 border-b border-border"
+        className="flex flex-wrap gap-2"
       >
-        <div className="flex justify-center gap-6 border-b border-border">
-          {domains.map((domain) => {
-            const isActive = currentDomain === domain.name;
-
-            return (
-              <button
-                key={domain.name}
-                onClick={() => setCurrentDomain(domain.name)}
-                className="relative pb-2 text-sm font-medium transition-transform active:scale-95"
-              >
-                <span
-                  className={
-                    isActive
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-primary"
-                  }
-                >
-                  {domain.name}
-                </span>
-
-                {isActive && (
-                  <motion.span
-                    layoutId="underline"
-                    className="absolute left-0 right-0 -bottom-[1px] h-[2px] bg-primary rounded-full"
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  />
-                )}
-              </button>
-            );
-          })}
-        </div>
+      <div className="flex flex-wrap gap-2">
+        {uniqueDomains.map((domain) => (
+          <button
+            key={domain}
+            onClick={() => setActiveFilter(domain)}
+            className={`rounded-full border px-3 py-1 text-sm font-mono transition-colors ${
+              activeFilter === domain
+                ? "border-primary bg-primary text-primary-foreground"
+                : "border-border bg-secondary text-muted-foreground hover:border-primary hover:text-primary"
+            }`}
+          >
+            {domain}
+          </button>
+        ))}
+      </div>
       </motion.div>
 
-      {/* Projects list — OSS-style */}
+      {/* Projects list */}
       <div className="animate-in flex flex-col gap-8">
         {activeProjects.map((project) => (
           <Section
@@ -153,7 +149,11 @@ export default function AllProjects() {
 
                 {project.hasBlog && (
                   <Link href={`/blog/${project.slug}`}>
-                    <Button variant="outline" size="sm" className="flex items-center gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="flex items-center gap-2"
+                    >
                       <span>Blog</span>
                     </Button>
                   </Link>
@@ -161,7 +161,10 @@ export default function AllProjects() {
 
                 {"liveLink" in project && (
                   <div className="flex items-center gap-1 ml-auto">
-                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+                    </span>
                     <span className="text-xs font-bold text-green-500">Live</span>
                   </div>
                 )}
@@ -179,7 +182,7 @@ const webProjects = [
     slug: "solan",
     image: "/solan.png",
     title: "Solan",
-    domain: "web",
+    domain: "Web",
     liveLink: "https://kaveeshkhattar.pythonanywhere.com",
     gitHub: "https://github.com/KaveeshKhattar/Solan",
     hasBlog: true,
@@ -190,7 +193,7 @@ const webProjects = [
     slug: "teamfinder",
     image: "/teamfinder.png",
     title: "TeamFinder",
-    domain: "web",
+    domain: "Web",
     liveLink: "https://teamfinder-frontend.vercel.app/",
     gitHub: "https://github.com/KaveeshKhattar/TeamFinder",
     hasBlog: true,
@@ -201,7 +204,7 @@ const webProjects = [
     slug: "teachmate",
     image: "/teachmate.png",
     title: "TeachMate",
-    domain: "web",
+    domain: "Web",
     liveLink: "https://teachmate-murex.vercel.app/",
     gitHub: "https://github.com/KaveeshKhattar/teachmate",
     hasBlog: true,
@@ -305,5 +308,3 @@ const iOSProjects = [
     summary: "An app to track which books you've read and what you thought of them.",
   },
 ];
-
-const domains = [{ name: "Web" }, { name: "iOS" }];

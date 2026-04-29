@@ -1,5 +1,3 @@
-// import Image from "next/image";
-
 import { ArrowUpRightIcon } from "lucide-react";
 import Link from "next/link";
 import ProjectList from "./projects/_components/ProjectList";
@@ -15,78 +13,124 @@ export default function Home() {
 
   return (
     <div className="flex flex-col gap-16 md:gap-24">
+
+      {/* Hero */}
       <div className="flex flex-col gap-8">
         <div className="space-y-4">
-          <h1 className="animate-in text-3xl font-semibold">
-            Hey, Kaveesh here!
+          <div
+            className="animate-in flex items-center gap-2 w-fit rounded-full border border-border bg-secondary px-3 py-1"
+            style={{ "--index": 0 } as React.CSSProperties}
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+            </span>
+            <span className="text-xs font-mono text-muted-foreground">
+              Bengaluru, India
+            </span>
+          </div>
+
+          <h1
+            className="animate-in text-3xl font-semibold tracking-tight"
+            style={{ "--index": 1 } as React.CSSProperties}
+          >
+            Hey, I&apos;m Kaveesh.
           </h1>
-          <p className="animate-in text-muted-foreground md:w-3/4">
-            I&apos;m a software engineer in Bangalore with an interest in using technology to solve problems I come across in my world.
+          <p
+            className="animate-in text-muted-foreground md:w-3/4 leading-relaxed"
+            style={{ "--index": 2 } as React.CSSProperties}
+          >
+            I'm a software engineer focused on building AI infrastructure and currently working on cloud-native systems.
           </p>
         </div>
 
-        <div className="flex animate-in gap-3 text-sm">
+        <div
+          className="flex animate-in flex-wrap gap-2 text-sm"
+          style={{ "--index": 3 } as React.CSSProperties}
+        >
           <Link
             href="https://www.linkedin.com/in/kaveeshkhattar/"
-            className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 no-underline hover:bg-tertiary"
+            className="flex w-fit items-center gap-1 rounded-full bg-secondary px-3 py-1 no-underline hover:bg-tertiary transition-colors"
             target="_blank"
           >
             LinkedIn
-            <ArrowUpRightIcon className="h-4 w-4 text-tertiary" />
+            <ArrowUpRightIcon className="h-3.5 w-3.5 text-muted-foreground" />
           </Link>
-
           <Link
             href="https://github.com/KaveeshKhattar"
-            className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 no-underline hover:bg-tertiary"
+            className="flex w-fit items-center gap-1 rounded-full bg-secondary px-3 py-1 no-underline hover:bg-tertiary transition-colors"
             target="_blank"
           >
             GitHub
-            <ArrowUpRightIcon className="h-4 w-4 text-tertiary" />
+            <ArrowUpRightIcon className="h-3.5 w-3.5 text-muted-foreground" />
           </Link>
-
           <Link
             href="mailto:kaveeshkhattar@gmail.com"
-            className="flex w-fit items-center rounded-full bg-secondary px-3 py-1 no-underline hover:bg-tertiary"
+            className="flex w-fit items-center gap-1 rounded-full bg-secondary px-3 py-1 no-underline hover:bg-tertiary transition-colors"
             target="_blank"
           >
             Email
-            <ArrowUpRightIcon className="h-4 w-4 text-tertiary" />
+            <ArrowUpRightIcon className="h-3.5 w-3.5 text-muted-foreground" />
           </Link>
         </div>
       </div>
 
-      <div className="flex animate-in flex-col gap-8">
-        <p className="text-muted-foreground">Pinned</p>
+      {/* Pinned projects */}
+      <div
+        className="flex animate-in flex-col gap-6"
+        style={{ "--index": 4 } as React.CSSProperties}
+      >
+        <div className="flex items-center justify-between">
+          <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground">
+            Pinned
+          </p>
+          <Link
+            href="/projects"
+            className="flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
+          >
+            All projects
+            <ArrowUpRightIcon className="h-3.5 w-3.5" />
+          </Link>
+        </div>
         <ProjectList />
       </div>
 
-      <div className="flex animate-in flex-col gap-4">
-        <div>
-          <Link
-            className="group flex items-center gap-2 tracking-tight text-muted-foreground"
-            href="/blog"
-          >
-            Latest blogs
-            <ArrowUpRightIcon className="h-5 w-5 text-tertiary transition-all group-hover:text-primary" />
-          </Link>
-          <p className="max-w-lg text-muted-foreground text-pretty">
-            I occassionally write about the projects I am working on, check it
-            out.
+      {/* Latest blogs */}
+      <div
+        className="flex animate-in flex-col gap-4"
+        style={{ "--index": 5 } as React.CSSProperties}
+      >
+        <div className="flex items-center justify-between">
+          <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground">
+            Latest writing
           </p>
+          <Link
+            href="/blog"
+            className="flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
+          >
+            All posts
+            <ArrowUpRightIcon className="h-3.5 w-3.5" />
+          </Link>
         </div>
 
-        {finalBlogs.map((blog) => {
-          return (
-            <Link href={`/blog/${blog.id}`} key={blog.id} className="flex">
-              <Section heading={formatDate(blog.date)}>
-                <span className="font-medium leading-tight text-pretty">
-                  {blog.summary}
-                </span>
-              </Section>
+        <div className="flex flex-col">
+          {finalBlogs.map((blog, i) => (
+            <Link
+              href={`/blog/${blog.id}`}
+              key={blog.id}
+              className="group flex items-center justify-between gap-4 border-b border-border py-3 last:border-0 hover:opacity-80 transition-opacity"
+            >
+              <span className="font-medium leading-tight text-pretty group-hover:text-primary transition-colors">
+                {blog.summary}
+              </span>
+              <span className="shrink-0 text-xs font-mono text-muted-foreground">
+                {formatDate(blog.date)}
+              </span>
             </Link>
-          );
-        })}
+          ))}
+        </div>
       </div>
+
     </div>
   );
 }
@@ -130,8 +174,7 @@ const blogs = [
   },
   {
     id: "text-to-scene",
-    title:
-      "Exploring Novel Image Generation via Script-Directed Scene Formation",
+    title: "Exploring Novel Image Generation via Script-Directed Scene Formation",
     summary: "Lights, Camera, AI",
     date: "2024-10-20",
   },

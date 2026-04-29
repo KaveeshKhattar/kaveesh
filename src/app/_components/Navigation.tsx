@@ -2,44 +2,28 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import ThemeSwitcher from "./ThemeSwitcher";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaBars } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = `/${usePathname().split("/")[1]}`;
+
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [isMenuOpen]);
   const links = [
-    {
-      path: "/",
-      title: "Home",
-    },
-    {
-      path: "/about",
-      title: "About",
-    },
-    {
-      path: "/projects",
-      title: "Projects",
-    },
-    {
-      path: "/publications",
-      title: "Publications",
-    },
-    {
-      path: "/certificates",
-      title: "Certificates",
-    },
-    {
-      path: "/open-source",
-      title: "Open Source",
-    },
-    {
-      path: "/blog",
-      title: "Blog",
-    },
+    { path: "/", title: "Home" },
+    { path: "/about", title: "About" },
+    { path: "/projects", title: "Projects" },
+    { path: "/publications", title: "Publications" },
+    { path: "/certificates", title: "Certificates" },
+    { path: "/open-source", title: "Open Source" },
+    { path: "/blog", title: "Blog" },
   ] as const;
 
   return (
@@ -79,15 +63,12 @@ export default function Navigation() {
                 className={`${
                   pathname === link.path ? "text-primary" : "text-[#71717a]"
                 } relative rounded-lg px-3 py-1.5 text-sm transition-colors`}
-                style={{
-                  WebkitTapHighlightColor: "transparent",
-                }}
+                style={{ WebkitTapHighlightColor: "transparent" }}
               >
                 {pathname === link.path && (
                   <motion.span
                     layoutId="bubble"
                     className="absolute inset-0 -z-10 rounded-lg bg-tertiary"
-                    // style={{ borderRadius: 9999 }}
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
                 )}
@@ -97,47 +78,91 @@ export default function Navigation() {
           </div>
 
           <div className="flex justify-center items-center space-x-4">
-            {/* Hamburger Menu Button */}
+            {/* Hamburger button */}
             <button
-              className="block md:hidden"
+              className="block md:hidden p-1.5 rounded-lg text-muted-foreground hover:text-primary transition-colors"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
             >
-              <div className="flex justify-between">
-                <FaBars />
-              </div>
+              <AnimatePresence mode="wait" initial={false}>
+                {isMenuOpen ? (
+                  <motion.span
+                    key="close"
+                    initial={{ opacity: 0, rotate: -90 }}
+                    animate={{ opacity: 1, rotate: 0 }}
+                    exit={{ opacity: 0, rotate: 90 }}
+                    transition={{ duration: 0.15 }}
+                  >
+                    <FaXmark className="h-4 w-4" />
+                  </motion.span>
+                ) : (
+                  <motion.span
+                    key="open"
+                    initial={{ opacity: 0, rotate: 90 }}
+                    animate={{ opacity: 1, rotate: 0 }}
+                    exit={{ opacity: 0, rotate: -90 }}
+                    transition={{ duration: 0.15 }}
+                  >
+                    <FaBars className="h-4 w-4" />
+                  </motion.span>
+                )}
+              </AnimatePresence>
             </button>
 
-            {/* Full-Page Menu */}
-            {isMenuOpen && (
-              <motion.div
-                initial={{ opacity: 0, x: "100%" }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: "100%" }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="fixed inset-0 z-50 bg-[rgb(250,250,250)] dark:bg-[#0a0a0a] text-black dark:text-white flex flex-col items-center justify-center space-y-6 font-mono"
-              >
-                <button
-                  className="absolute top-4 right-4 text-black dark:text-white"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <FaXmark />
-                </button>
-                {links.map((link) => (
-                  <Link
-                    key={link.path}
-                    href={link.path}
-                    className="text-lg font-bold"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {link.title}
-                  </Link>
-                ))}
-              </motion.div>
-            )}
             <ThemeSwitcher />
           </div>
         </nav>
       </header>
+
+      {/* Full-page mobile menu */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            key="mobile-menu"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm flex flex-col items-center justify-center md:hidden"
+          >
+            {/* Close button */}
+            <button
+              onClick={() => setIsMenuOpen(false)}
+              className="absolute top-3 right-4 p-1.5 rounded-lg text-muted-foreground hover:text-primary transition-colors"
+              aria-label="Close menu"
+            >
+              <FaXmark className="h-4 w-4" />
+            </button>
+
+            <nav className="flex flex-col items-center gap-1 w-full px-8">
+              {links.map((link, i) => (
+                <motion.div
+                  key={link.path}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.04, duration: 0.2 }}
+                  className="w-full"
+                >
+                  <Link
+                    href={link.path}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`flex items-center justify-between w-full px-4 py-3 rounded-lg text-sm font-mono transition-colors ${
+                      pathname === link.path
+                        ? "bg-tertiary text-primary font-medium"
+                        : "text-muted-foreground hover:text-primary hover:bg-secondary"
+                    }`}
+                  >
+                    <span>{link.title}</span>
+                    {pathname === link.path && (
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                    )}
+                  </Link>
+                </motion.div>
+              ))}
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

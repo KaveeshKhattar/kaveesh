@@ -1,26 +1,73 @@
+"use client";
+
 import Link from "next/link";
 import { formatDate } from "../_utils/formateDate";
 import Section from "../_components/Section";
-import { Metadata } from "next";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { FaGithub } from "react-icons/fa";
+import { useState } from "react";
+import { motion } from "framer-motion";
 
-export const metadata: Metadata = {
-  title: "Open Source | Kaveesh Khattar",
-  description: "Built by Kaveesh Khattar",
-};
+
+const openSourceContributions = [
+  {
+    id: "envoyproxy-ai-gateway-ssa-finalizers",
+    project: "envoyproxy/ai-gateway",
+    title: "Server-side apply for controller finalizers",
+    summary:
+      "Switched the controller's finalizer updates to Kubernetes server-side apply so finalizers are merged safely without resourceVersion checks while preserving managed field ownership.",
+    link: "https://github.com/envoyproxy/ai-gateway/pull/1930",
+    github: "https://github.com/envoyproxy/ai-gateway",
+    logo: "/envoy.png",
+    date: "2026-03-16",
+    role: "Contributor",
+  },
+  {
+    id: "envoyproxy-ai-gateway-extproc-cache-race",
+    project: "envoyproxy/ai-gateway",
+    title: "Fix webhook cache race causing missing extProc sidecar injection",
+    summary:
+      "Fixed a race condition in the gateway admission webhook where informer cache lag could cause extProc sidecar injection to be skipped. Introduced a noCacheReader fallback using the API server and refactored route lookups to use a cache-first, API-reader-second pattern.",
+    link: "https://github.com/envoyproxy/ai-gateway/pull/1981",
+    github: "https://github.com/envoyproxy/ai-gateway",
+    logo: "/envoy.png",
+    date: "2026-04-07",
+    role: "Contributor",
+  },
+  {
+    id: "vllm-semantic-router-pluggable-retriever",
+    project: "vllm-project/semantic-router",
+    title: "Wire pluggable retriever registry into extproc tool selection flow",
+    summary:
+      "Replaced a hardcoded tool lookup with a pluggable strategy registry, allowing different retrieval algorithms to be swapped in without changing core routing logic. Added per-request observability fields (strategy name, confidence, latency) and a Prometheus metric to surface tool selection performance.",
+    link: "https://github.com/vllm-project/semantic-router/pull/1841",
+    github: "https://github.com/vllm-project/semantic-router",
+    logo: "/vllm-sr.png",
+    date: "2026-04-29",
+    role: "Contributor",
+  },
+] as const;
 
 type OpenSourceContribution = (typeof openSourceContributions)[number];
 
+const ALL_REPOS = "All";
+
+const uniqueProjects = [
+  ALL_REPOS,
+  ...Array.from(new Set(openSourceContributions.map((c) => c.project))),
+];
+
 export default function OpenSource() {
-  const contributions: OpenSourceContribution[] = [...openSourceContributions].sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
+  const [activeFilter, setActiveFilter] = useState<string>(ALL_REPOS);
+
+  const contributions: OpenSourceContribution[] = [...openSourceContributions]
+    .filter((c) => activeFilter === ALL_REPOS || c.project === activeFilter)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (
-    
-    <div className="flex flex-col gap-16 md:gap-24">
+
+    <div className="flex flex-col gap-2 md:gap-6">
       <div>
         <h1 className="animate-in text-3xl font-bold tracking-tight text-primary">
           Open Source
@@ -33,10 +80,29 @@ export default function OpenSource() {
         </p>
       </div>
 
+      {/* Filter buttons */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.1 }}
+        className="flex flex-wrap gap-2"
+      >
+          {uniqueProjects.map((project) => (
+            <button
+              key={project}
+              onClick={() => setActiveFilter(project)}
+              className={`rounded-full border px-3 py-1 text-sm font-mono transition-colors ${activeFilter === project
+                ? "border-primary bg-primary text-primary-foreground"
+                : "border-border bg-secondary text-muted-foreground hover:border-primary hover:text-primary"
+                }`}
+            >
+              {project}
+            </button>
+          ))}
+      </motion.div>
+
       <div className="animate-in flex flex-col gap-8">
         {contributions.map((item: OpenSourceContribution) => (
-          
-          
           <Section
             key={item.id}
             heading={item.project}
@@ -91,30 +157,3 @@ export default function OpenSource() {
     </div>
   );
 }
-
-const openSourceContributions = [
-  {
-    id: "envoyproxy-ai-gateway-ssa-finalizers",
-    project: "envoyproxy/ai-gateway",
-    title: "Server-side apply for controller finalizers",
-    summary:
-      "Switched the controller's finalizer updates to Kubernetes server-side apply so finalizers are merged safely without resourceVersion checks while preserving managed field ownership.",
-    link: "https://github.com/envoyproxy/ai-gateway/pull/1930",
-    github: "https://github.com/envoyproxy/ai-gateway",
-    logo: "/envoy.png",
-    date: "2026-03-16",
-    role: "Contributor",
-  },
-  {
-    id: "envoyproxy-ai-gateway-extproc-cache-race",
-    project: "envoyproxy/ai-gateway",
-    title: "Fix webhook cache race causing missing extProc sidecar injection",
-    summary:
-      "Fixed a race condition in the gateway admission webhook where informer cache lag could cause extProc sidecar injection to be skipped. Introduced a noCacheReader fallback using the API server and refactored route lookups to use a cache-first, API-reader-second pattern.",
-    link: "https://github.com/envoyproxy/ai-gateway/pull/1981",
-    github: "https://github.com/envoyproxy/ai-gateway",
-    logo: "/envoy.png",
-    date: "2026-04-07",
-    role: "Contributor",
-  },
-] as const;

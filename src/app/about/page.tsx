@@ -1,16 +1,12 @@
-// import Image from "next/image";
 import { Metadata } from "next";
 import Image, { StaticImageData } from "next/image";
-import scarface from "../../../public/Scarface.png";
-import home from "../../../public/Home.png";
 import presentation from "../../../public/presentation.jpg";
 import myself from "../../../public/myself.jpeg";
 import Gallery from "./_components/Gallery";
 import Section from "../_components/Section";
 import ConnectLinks from "../_components/ConnectLinks";
 import Link from "next/link";
-import Workplaces from "./_components/Workplaces";
-import EducationList from "./_components/Education";
+import ItemList from "./_components/ItemList";
 import att from "../../../public/att.jpg";
 import myelin from "../../../public/myelin.png";
 import pes from "../../../public/pes.png";
@@ -22,13 +18,22 @@ export const metadata: Metadata = {
 };
 
 export default function About() {
-  const processedWorkplaces = workplaces.map((workplace) => ({
-    ...workplace,
-    date: workplace.date.replace(" ", "\u00A0"), // Non-breaking space
+  const processedWorkplaces = workplaces.map((w) => ({
+    title: w.title,
+    subtitle: w.company,
+    imageSrc: w.imageSrc,
+    imageStyle: "contain" as const,
+    date: w.date.replace(" ", "\u00A0"),
+    link: w.link,
   }));
-  const processedEducation = education.map((item) => ({
-    ...item,
-    date: item.date?.replace(" ", "\u00A0"), // Non-breaking space
+
+  const processedEducation = education.map((e) => ({
+    title: e.degree,
+    subtitle: e.institution,
+    imageSrc: e.imageSrc,
+    imageStyle: "cover" as const,
+    date: e.date?.replace(" ", "\u00A0"),
+    link: e.link,
   }));
 
   return (
@@ -59,14 +64,13 @@ export default function About() {
             priority
           />
         </div>
-
         <div
           className="animate-in"
           style={{ "--index": 2 } as React.CSSProperties}
         >
           <Image
             src={presentation}
-            alt={"home"}
+            alt={"presentation"}
             width={220}
             height={260}
             className="pointer-events-none absolute inset-0 -top-44 left-[40%] w-48 rotate-6 rounded-xl bg-neutral-400 object-cover shadow-md md:left-[60%] md:w-56"
@@ -86,13 +90,14 @@ export default function About() {
         <Section heading="About" headingAlignment="left">
           <div className="flex flex-col gap-6">
             <p>
-              Hey, I&apos;m Kaveesh Khattar! Originally from Delhi, I was born and raised in Bangalore, with five years spent in Mumbai.
+              Hey, I&apos;m Kaveesh Khattar! Originally from Delhi, I was born
+              and raised in Bangalore, with five years spent in Mumbai.
             </p>
-
             <p>
-            I got into Computer Science through hands-on experimentation with home networking and early internet setups. That curiosity eventually grew into a deeper interest in building software.
+              I got into Computer Science through hands-on experimentation with
+              home networking and early internet setups. That curiosity
+              eventually grew into a deeper interest in building software.
             </p>
-
             <p>
               Beyond work, I&apos;ve enjoyed leading workshops and contributing
               to tech communities to foster learning and engagement in software
@@ -105,20 +110,21 @@ export default function About() {
           </div>
         </Section>
 
-
         <Section heading="Education" headingAlignment="left">
-          <div className="flex flex-col gap-8">
-            {/* <p>I am currently pursuing an M.S. in Computer Science at NYU, with a focus on systems and ML infrastructure.</p> */}
-            I have graduated from PES University, majoring in Computer Science with a specialisation in Machine Intelligence and Data Science.
-            <EducationList items={processedEducation} />
+        <div className="flex flex-col gap-8">
+            <p>I have graduated from PES University, majoring in Computer Science with a specialisation in Machine Intelligence and Data Science.</p>
+            <ItemList items={processedEducation} />
           </div>
         </Section>
 
         <Section heading="Work" headingAlignment="left">
           <div className="flex flex-col gap-8">
-          <p>I am a generalist software engineer with a focus on infrastructure and observability. I enjoy building iOS apps on the side and am constantly exploring new technologies.</p>
-          <p>Here are some of the places I have worked:</p>
-            <Workplaces items={processedWorkplaces} />
+            <p>
+              I am a generalist software engineer with a focus on infrastructure
+              and observability. I enjoy building iOS apps on the side and am
+              constantly exploring new technologies.
+            </p>
+            <ItemList items={processedWorkplaces} />
           </div>
         </Section>
 
@@ -128,7 +134,7 @@ export default function About() {
               <li className="col-span-1 transition-opacity" key={link.label}>
                 <Link
                   href={link.href}
-                  className="inline-grid w-full rounded-lg bg-secondary p-4 no-underline transition-opacity "
+                  className="inline-grid w-full rounded-lg bg-secondary p-4 no-underline transition-opacity"
                   target="_blank"
                 >
                   <div className="flex items-center gap-3">
@@ -152,7 +158,6 @@ export default function About() {
             ))}
           </ul>
         </Section>
-        
       </div>
     </div>
   );
@@ -196,5 +201,5 @@ const education = [
     date: "Dec 2020 - May 2024",
     imageSrc: pes,
     link: "https://pes.edu/",
-  }
+  },
 ];
