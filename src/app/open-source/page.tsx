@@ -14,7 +14,7 @@ const openSourceContributions = [
   {
     id: "envoyproxy-ai-gateway-ssa-finalizers",
     project: "envoyproxy/ai-gateway",
-    title: "Server-side apply for controller finalizers",
+    title: "Improved Kubernetes Controller Reliability Through Server-Side Apply",
     summary:
       "Switched the controller's finalizer updates to Kubernetes server-side apply so finalizers are merged safely without resourceVersion checks while preserving managed field ownership.",
     link: "https://github.com/envoyproxy/ai-gateway/pull/1930",
@@ -26,7 +26,7 @@ const openSourceContributions = [
   {
     id: "envoyproxy-ai-gateway-extproc-cache-race",
     project: "envoyproxy/ai-gateway",
-    title: "Fix webhook cache race causing missing extProc sidecar injection",
+    title: "Eliminated cache-induced sidecar injection failures",
     summary:
       "Fixed a race condition in the gateway admission webhook where informer cache lag could cause extProc sidecar injection to be skipped. Introduced a noCacheReader fallback using the API server and refactored route lookups to use a cache-first, API-reader-second pattern.",
     link: "https://github.com/envoyproxy/ai-gateway/pull/1981",
@@ -38,7 +38,7 @@ const openSourceContributions = [
   {
     id: "vllm-semantic-router-pluggable-retriever",
     project: "vllm-project/semantic-router",
-    title: "Wire pluggable retriever registry into extproc tool selection flow",
+    title: "Enabled dynamic retrieval strategies for AI tool selection",
     summary:
       "Replaced a hardcoded tool lookup with a pluggable strategy registry, allowing different retrieval algorithms to be swapped in without changing core routing logic. Added per-request observability fields (strategy name, confidence, latency) and a Prometheus metric to surface tool selection performance.",
     link: "https://github.com/vllm-project/semantic-router/pull/1841",
@@ -50,7 +50,7 @@ const openSourceContributions = [
   {
     id: "kserve-llmisvc-cache-inferenceservice-config",
     project: "kserve/kserve",
-    title: "Cache inferenceservice-config ConfigMap and watch for changes",
+    title: "Reduced API server load by caching ConfigMaps for LLM Services",
     summary:
     "Replaced direct API server reads in the LLMInferenceService controller with a cached controller-runtime client backed by a field-selector-scoped informer. Added a Watches entry with a config-scoped predicate so changes to inferenceservice-config trigger reconciliation across all LLMInferenceService objects.",
     link: "https://github.com/kserve/kserve/pull/5573",

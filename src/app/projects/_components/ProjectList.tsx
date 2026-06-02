@@ -7,7 +7,7 @@ export default function ProjectList() {
     {
       slug: "kserve-llmisvc-cache-inferenceservice-config",
       image: "/kserve.png",
-      title: "Cache inferenceservice-config",
+      title: "Reduced API server load by caching ConfigMaps for LLM Services",
       kind: "oss",
       repo: "kserve/kserve",
       link: "https://github.com/kserve/kserve/pull/5573",
@@ -17,7 +17,7 @@ export default function ProjectList() {
     {
       slug: "vllm-semantic-router-pluggable-retriever",
       image: "/vllm-sr.png",
-      title: "Pluggable retriever registry",
+      title: "Enabled dynamic retrieval strategies for AI tool selection",
       kind: "oss",
       repo: "vllm-project/semantic-router",
       link: "https://github.com/vllm-project/semantic-router/pull/1841",
@@ -27,33 +27,33 @@ export default function ProjectList() {
     {
       slug: "envoyproxy-ai-gateway-extproc-cache-race",
       image: "/envoy.png",
-      title: "Fix webhook cache race",
+      title: "Eliminated Cache-Induced Sidecar Injection Failures",
       kind: "oss",
       repo: "envoyproxy/ai-gateway",
       link: "https://github.com/envoyproxy/ai-gateway/pull/1981",
       summary:
-        "Fixed a race condition causing extProc sidecar injection to fail ~90% of the time on initial deployment.",
+        "Fixed a race condition that caused extProc sidecar injection to fail ~90% of the time on initial deployment.",
     },
-    {
-      slug: "solan",
-      image: "/solan.png",
-      title: "Solan",
-      kind: "project",
-      repo: null,
-      link: "https://kaveeshkhattar.pythonanywhere.com",
-      summary:
-        "Crowd-sourced question bank builder to enhance learning with over 60+ visitors.",
-    },
-    {
-      slug: "disinformation",
-      image: "/disinformation.png",
-      title: "Psychological Needs at Play in Disinformation",
-      kind: "paper",
-      repo: null,
-      link: "/files/disinformation.pdf",
-      summary:
-        "Paper on motivations behind misleading content on social media using Maslow's Theory.",
-    },
+    // {
+    //   slug: "solan",
+    //   image: "/solan.png",
+    //   title: "Solan",
+    //   kind: "project",
+    //   repo: null,
+    //   link: "https://kaveeshkhattar.pythonanywhere.com",
+    //   summary:
+    //     "Crowd-sourced question bank builder to enhance learning with over 60+ visitors.",
+    // },
+    // {
+    //   slug: "disinformation",
+    //   image: "/disinformation.png",
+    //   title: "Psychological Needs at Play in Disinformation",
+    //   kind: "paper",
+    //   repo: null,
+    //   link: "/files/disinformation.pdf",
+    //   summary:
+    //     "Paper on motivations behind misleading content on social media using Maslow's Theory.",
+    // },
   ];
 
   return (
