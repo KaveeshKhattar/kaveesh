@@ -47,6 +47,18 @@ const openSourceContributions = [
     date: "2026-04-29",
     role: "Contributor",
   },
+  {
+    id: "kserve-llmisvc-cache-inferenceservice-config",
+    project: "kserve/kserve",
+    title: "Cache inferenceservice-config ConfigMap and watch for changes",
+    summary:
+    "Replaced direct API server reads in the LLMInferenceService controller with a cached controller-runtime client backed by a field-selector-scoped informer. Added a Watches entry with a config-scoped predicate so changes to inferenceservice-config trigger reconciliation across all LLMInferenceService objects.",
+    link: "https://github.com/kserve/kserve/pull/5573",
+    github: "https://github.com/kserve/kserve",
+    logo: "/kserve-rect-hd.jpg",
+    date: "2026-06-02",
+    role: "Contributor",
+  },
 ] as const;
 
 type OpenSourceContribution = (typeof openSourceContributions)[number];
