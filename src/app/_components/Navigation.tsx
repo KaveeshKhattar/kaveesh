@@ -5,8 +5,8 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import ThemeSwitcher from "./ThemeSwitcher";
 import { useState, useEffect } from "react";
-import { FaBars } from "react-icons/fa";
-import { FaXmark } from "react-icons/fa6";
+import { Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -79,35 +79,40 @@ export default function Navigation() {
 
           <div className="flex justify-center items-center space-x-4">
             {/* Hamburger button */}
-            <button
-              className="block md:hidden p-1.5 rounded-lg text-muted-foreground hover:text-primary transition-colors"
+            <Button
+              variant="outline"
+              size="icon"
+              className="relative flex h-9 w-9 rounded-lg border-border bg-secondary/70 text-muted-foreground shadow-sm hover:border-primary/30 hover:bg-accent hover:text-primary md:hidden"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
+              aria-expanded={isMenuOpen}
             >
               <AnimatePresence mode="wait" initial={false}>
                 {isMenuOpen ? (
                   <motion.span
                     key="close"
+                    className="absolute inset-0 flex items-center justify-center"
                     initial={{ opacity: 0, rotate: -90 }}
                     animate={{ opacity: 1, rotate: 0 }}
                     exit={{ opacity: 0, rotate: 90 }}
                     transition={{ duration: 0.15 }}
                   >
-                    <FaXmark className="h-4 w-4" />
+                    <X className="h-4 w-4" />
                   </motion.span>
                 ) : (
                   <motion.span
                     key="open"
+                    className="absolute inset-0 flex items-center justify-center"
                     initial={{ opacity: 0, rotate: 90 }}
                     animate={{ opacity: 1, rotate: 0 }}
                     exit={{ opacity: 0, rotate: -90 }}
                     transition={{ duration: 0.15 }}
                   >
-                    <FaBars className="h-4 w-4" />
+                    <Menu className="h-4 w-4" />
                   </motion.span>
                 )}
               </AnimatePresence>
-            </button>
+            </Button>
 
             <ThemeSwitcher />
           </div>
@@ -126,13 +131,15 @@ export default function Navigation() {
             className="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm flex flex-col items-center justify-center md:hidden"
           >
             {/* Close button */}
-            <button
+            <Button
+              variant="outline"
+              size="icon"
               onClick={() => setIsMenuOpen(false)}
-              className="absolute top-3 right-4 p-1.5 rounded-lg text-muted-foreground hover:text-primary transition-colors"
+              className="absolute right-4 top-3 h-9 w-9 rounded-lg border-border bg-secondary/70 text-muted-foreground shadow-sm hover:border-primary/30 hover:bg-accent hover:text-primary"
               aria-label="Close menu"
             >
-              <FaXmark className="h-4 w-4" />
-            </button>
+              <X className="h-4 w-4" />
+            </Button>
 
             <nav className="flex flex-col items-center gap-1 w-full px-8">
               {links.map((link, i) => (

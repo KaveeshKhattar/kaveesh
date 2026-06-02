@@ -8,7 +8,7 @@ export default function ProjectList() {
       slug: "kserve-llmisvc-cache-inferenceservice-config",
       image: "/kserve.png",
       title: "Reduced API server load by caching ConfigMaps for LLM Services",
-      kind: "oss",
+      kind: "open-source",
       repo: "kserve/kserve",
       link: "https://github.com/kserve/kserve/pull/5573",
       summary:
@@ -18,7 +18,7 @@ export default function ProjectList() {
       slug: "vllm-semantic-router-pluggable-retriever",
       image: "/vllm-sr.png",
       title: "Enabled dynamic retrieval strategies for AI tool selection",
-      kind: "oss",
+      kind: "open-source",
       repo: "vllm-project/semantic-router",
       link: "https://github.com/vllm-project/semantic-router/pull/1841",
       summary:
@@ -28,7 +28,7 @@ export default function ProjectList() {
       slug: "envoyproxy-ai-gateway-extproc-cache-race",
       image: "/envoy.png",
       title: "Eliminated Cache-Induced Sidecar Injection Failures",
-      kind: "oss",
+      kind: "open-source",
       repo: "envoyproxy/ai-gateway",
       link: "https://github.com/envoyproxy/ai-gateway/pull/1981",
       summary:

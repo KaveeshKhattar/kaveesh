@@ -1,17 +1,5 @@
-// import React from "react";
-
-// import { useEffect, useState } from "react";
-// import clsx from "clsx";
-// import { motion, AnimatePresence } from "framer-motion";
-// import { useTheme } from "next-themes";
-
-// import * as Select from "@radix-ui/react-select";
-
-// import { MoonIcon, CheckIcon } from "@heroicons/react/20/solid";
-// import { SunIcon } from "@heroicons/react/24/outline";
-
 import * as React from "react";
-import { Moon, Sun } from "lucide-react";
+import { Check, Monitor, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
@@ -22,9 +10,15 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+const themeOptions = [
+  { value: "light", label: "Light", icon: Sun },
+  { value: "dark", label: "Dark", icon: Moon },
+  { value: "system", label: "System", icon: Monitor },
+] as const;
+
 export default function ThemeSwitcher() {
   const [mounted, setMounted] = React.useState(false);
-  const { setTheme } = useTheme();
+  const { theme = "system", setTheme } = useTheme();
 
   React.useEffect(() => {
     setMounted(true);
@@ -37,22 +31,41 @@ export default function ThemeSwitcher() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
-          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+        <Button
+          variant="outline"
+          size="icon"
+          className="relative h-9 w-9 rounded-lg border-border bg-secondary/70 text-muted-foreground shadow-sm hover:border-primary/30 hover:bg-accent hover:text-primary"
+          aria-label="Choose color theme"
+        >
+          <Sun className="absolute h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
-          Light
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
-          System
-        </DropdownMenuItem>
+      <DropdownMenuContent
+        align="end"
+        sideOffset={8}
+        className="min-w-36 rounded-lg border-border bg-popover p-1.5 shadow-lg"
+      >
+        {themeOptions.map(({ value, label, icon: Icon }) => {
+          const isActive = theme === value;
+
+          return (
+            <DropdownMenuItem
+              key={value}
+              onClick={() => setTheme(value)}
+              className="flex cursor-pointer items-center gap-2 rounded-md px-2.5 py-2 text-sm text-muted-foreground focus:bg-accent focus:text-primary"
+            >
+              <Icon className="h-4 w-4" />
+              <span className="flex-1">{label}</span>
+              <Check
+                className={`h-4 w-4 text-primary ${
+                  isActive ? "opacity-100" : "opacity-0"
+                }`}
+              />
+            </DropdownMenuItem>
+          );
+        })}
       </DropdownMenuContent>
     </DropdownMenu>
   );
