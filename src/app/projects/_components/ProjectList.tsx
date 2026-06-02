@@ -5,14 +5,14 @@ import { ArrowUpRightIcon } from "lucide-react";
 export default function ProjectList() {
   const projects = [
     {
-      slug: "envoyproxy-ai-gateway-extproc-cache-race",
-      image: "/envoy.png",
-      title: "Fix webhook cache race",
+      slug: "kserve-llmisvc-cache-inferenceservice-config",
+      image: "/kserve.png",
+      title: "Cache inferenceservice-config",
       kind: "oss",
-      repo: "envoyproxy/ai-gateway",
-      link: "https://github.com/envoyproxy/ai-gateway/pull/1981",
+      repo: "kserve/kserve",
+      link: "https://github.com/kserve/kserve/pull/5573",
       summary:
-        "Fixed a race condition causing extProc sidecar injection to fail ~90% of the time on initial deployment.",
+        "Replaced direct API server reads with a cached controller-runtime client, reducing API server pressure under high reconciliation load.",
     },
     {
       slug: "vllm-semantic-router-pluggable-retriever",
@@ -23,6 +23,16 @@ export default function ProjectList() {
       link: "https://github.com/vllm-project/semantic-router/pull/1841",
       summary:
         "Replaced a hardcoded tool lookup with a pluggable strategy registry with per-request observability.",
+    },
+    {
+      slug: "envoyproxy-ai-gateway-extproc-cache-race",
+      image: "/envoy.png",
+      title: "Fix webhook cache race",
+      kind: "oss",
+      repo: "envoyproxy/ai-gateway",
+      link: "https://github.com/envoyproxy/ai-gateway/pull/1981",
+      summary:
+        "Fixed a race condition causing extProc sidecar injection to fail ~90% of the time on initial deployment.",
     },
     {
       slug: "solan",
