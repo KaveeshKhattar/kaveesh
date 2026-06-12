@@ -47,7 +47,7 @@ export default function AllProjects() {
           className="animate-in text-muted-foreground"
           style={{ "--index": 1 } as React.CSSProperties}
         >
-          What I do when I&apos;m not at my 9-5.
+          What I do when I&apos;m not at my 9-5
         </p>
       </div>
 

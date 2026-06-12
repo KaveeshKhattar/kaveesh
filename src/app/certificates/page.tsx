@@ -29,7 +29,7 @@ export default function OpenSource() {
           className="animate-in text-muted-foreground"
           style={{ "--index": 1 } as React.CSSProperties}
         >
-          Credentials for the craft.
+          Credentials for the craft
         </p>
       </div>
 

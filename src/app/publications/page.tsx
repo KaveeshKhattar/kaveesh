@@ -27,7 +27,7 @@ export default function Publications() {
           className="animate-in text-muted-foreground"
           style={{ "--index": 1 } as React.CSSProperties}
         >
-          Trying to make a dent in the universe.
+          Trying to make a dent in the universe
         </p>
       </div>
 

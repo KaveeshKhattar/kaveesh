@@ -23,6 +23,7 @@ export default function Navigation() {
     { path: "/publications", title: "Publications" },
     { path: "/certificates", title: "Certificates" },
     { path: "/open-source", title: "Open Source" },
+    { path: "/hackathons", title: "Hackathons" },
     { path: "/blog", title: "Blog" },
   ] as const;
 

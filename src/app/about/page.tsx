@@ -46,7 +46,7 @@ export default function About() {
           className="animate-in text-muted-foreground"
           style={{ "--index": 1 } as React.CSSProperties}
         >
-          A glimpse into me.
+          A glimpse into me
         </p>
       </div>
 
