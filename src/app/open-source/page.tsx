@@ -59,6 +59,18 @@ const openSourceContributions = [
     date: "2026-06-02",
     role: "Contributor",
   },
+  {
+    id: "kserve-llmisvc-filter-httproute-parent-status",
+    project: "kserve/kserve",
+    title: "Fixed incorrect InferencePool migration triggered by unrelated gateway status",
+    summary:
+      "Fixed a routing bug where status reports from unrelated gateways could trigger unnecessary infrastructure migrations, improving reliability of LLM service traffic management. Added targeted filtering logic to ensure only the authoritative gateway's status is considered before making routing decisions.",
+    link: "https://github.com/kserve/kserve/pull/5583",
+    github: "https://github.com/kserve/kserve",
+    logo: "/kserve-rect-hd.jpg",
+    date: "2026-06-12",
+    role: "Contributor",
+  },
 ] as const;
 
 type OpenSourceContribution = (typeof openSourceContributions)[number];
