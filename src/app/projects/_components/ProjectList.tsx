@@ -5,6 +5,16 @@ import { ArrowUpRightIcon } from "lucide-react";
 export default function ProjectList() {
   const projects = [
     {
+      slug: "tars-tetrate-ai-buildathon",
+      image: "/tetrate-square-sm.png",
+      title: "TARS — Autonomous Inference Traffic Agent",
+      kind: "hackathon",
+      repo: "Tetrate AI Buildathon · 🏆 Top 5",
+      link: "https://github.com/KaveeshKhattar/tars-traffic-agent",
+      summary:
+        "An AI gateway agent that reasons across signals, reroutes traffic, and explains its decisions — instead of reacting to thresholds. Built with a Node.js orchestrator, Python fault simulator, and live SSE dashboard.",
+    },
+    {
       slug: "kserve-llmisvc-cache-inferenceservice-config",
       image: "/kserve.png",
       title: "Reduced API server load by caching ConfigMaps for LLM Services",
