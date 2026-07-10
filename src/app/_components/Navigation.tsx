@@ -21,9 +21,10 @@ export default function Navigation() {
     { path: "/about", title: "About" },
     { path: "/projects", title: "Projects" },
     { path: "/publications", title: "Publications" },
-    { path: "/certificates", title: "Certificates" },
     { path: "/open-source", title: "Open Source" },
     { path: "/hackathons", title: "Hackathons" },
+    { path: "/certificates", title: "Certificates" },
+    { path: "/patents", title: "Patents" },
     { path: "/blog", title: "Blog" },
   ] as const;
 

@@ -38,7 +38,7 @@ export default function AllProjects() {
       : allProjects.filter((p) => p.domain === activeFilter);
 
   return (
-    <div className="flex flex-col gap-16 md:gap-8">
+    <div className="flex flex-col gap-2 md:gap-6">
       <div>
         <h1 className="animate-in text-3xl font-bold tracking-tight text-primary">
           Projects
