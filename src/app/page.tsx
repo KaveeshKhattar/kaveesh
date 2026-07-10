@@ -12,7 +12,7 @@ export default function Home() {
   const finalBlogs = allBlogs.slice(0, 3);
 
   return (
-    <div className="flex flex-col gap-16 md:gap-24">
+    <div className="flex flex-col gap-2 md:gap-12">
 
       {/* Hero */}
       <div className="flex flex-col gap-8">
