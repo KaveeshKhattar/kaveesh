@@ -10,12 +10,27 @@ import { motion } from "framer-motion";
 
 const ALL_DOMAINS = "All";
 
-const domains = [{ name: "Web" }, { name: "iOS" }];
-
-const uniqueDomains = [
-  ALL_DOMAINS,
-  ...domains.map((d) => d.name),
+const domains = [
+  { name: "Web" }, { name: "iOS" }, { name: "AI / ML Systems" }, { name: "Distributed Systems" }, { name: "FinTech" }, { name: "Observability & Monitoring" }, { name: "Databases & Storage" }, { name: "High-Performance Systems (Rust/C++)" },
 ];
+
+const uniqueDomains = [ALL_DOMAINS, ...domains.map((d) => d.name)];
+
+// Single explicit shape for every project. Optional fields cover the
+// image-vs-video split and the liveLink-only-on-web-projects split,
+// so TS never has to infer a loose union from mixed array literals.
+interface Project {
+  slug: string;
+  title: string;
+  summary: string;
+  domains: string[];
+  hasBlog: boolean;
+  gitHub?: string;
+  liveLink?: string;
+  image?: string;
+  video?: string;
+  poster?: string;
+}
 
 export default function AllProjects() {
   const [activeFilter, setActiveFilter] = useState<string>(ALL_DOMAINS);
@@ -31,11 +46,10 @@ export default function AllProjects() {
 
   if (!mounted) return null;
 
-  const allProjects = [...webProjects, ...iOSProjects];
-  const activeProjects =
+  const activeProjects: Project[] =
     activeFilter === ALL_DOMAINS
       ? allProjects
-      : allProjects.filter((p) => p.domain === activeFilter);
+      : allProjects.filter((p) => p.domains.includes(activeFilter));
 
   return (
     <div className="flex flex-col gap-2 md:gap-6">
@@ -51,28 +65,27 @@ export default function AllProjects() {
         </p>
       </div>
 
-      {/* Filter pills — same style as OSS page */}
+      {/* Filter pills */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
         className="flex flex-wrap gap-2"
       >
-      <div className="flex flex-wrap gap-2">
-        {uniqueDomains.map((domain) => (
-          <button
-            key={domain}
-            onClick={() => setActiveFilter(domain)}
-            className={`rounded-full border px-3 py-1 text-sm font-mono transition-colors ${
-              activeFilter === domain
+        <div className="flex flex-wrap gap-2">
+          {uniqueDomains.map((domain) => (
+            <button
+              key={domain}
+              onClick={() => setActiveFilter(domain)}
+              className={`rounded-full border px-3 py-1 text-sm font-mono transition-colors ${activeFilter === domain
                 ? "border-primary bg-primary text-primary-foreground"
                 : "border-border bg-secondary text-muted-foreground hover:border-primary hover:text-primary"
-            }`}
-          >
-            {domain}
-          </button>
-        ))}
-      </div>
+                }`}
+            >
+              {domain}
+            </button>
+          ))}
+        </div>
       </motion.div>
 
       {/* Projects list */}
@@ -84,7 +97,7 @@ export default function AllProjects() {
             headingAlignment="left"
             leading={
               <div className="flex flex-col items-center gap-2">
-                {"image" in project ? (
+                {project.image ? (
                   <div className="relative w-[120px] h-[80px] rounded-md border border-border bg-secondary overflow-hidden">
                     <Image
                       src={project.image}
@@ -121,8 +134,20 @@ export default function AllProjects() {
                 </span>
               </div>
 
+              {/* Domain tags */}
+              <div className="flex flex-wrap gap-1">
+                {project.domains.map((d) => (
+                  <span
+                    key={d}
+                    className="rounded-full border border-border bg-secondary px-2 py-0.5 text-xs text-muted-foreground"
+                  >
+                    {d}
+                  </span>
+                ))}
+              </div>
+
               <div className="flex flex-wrap items-center gap-2">
-                {"liveLink" in project && project.liveLink && (
+                {project.liveLink && (
                   <Link href={project.liveLink} target="_blank">
                     <Button
                       variant="outline"
@@ -159,7 +184,7 @@ export default function AllProjects() {
                   </Link>
                 )}
 
-                {"liveLink" in project && (
+                {project.liveLink && (
                   <div className="flex items-center gap-1 ml-auto">
                     <span className="relative flex h-2 w-2">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
@@ -177,12 +202,12 @@ export default function AllProjects() {
   );
 }
 
-const webProjects = [
+const webProjects: Project[] = [
   {
     slug: "solan",
     image: "/solan.png",
     title: "Solan",
-    domain: "Web",
+    domains: ["Web"],
     liveLink: "https://kaveeshkhattar.pythonanywhere.com",
     gitHub: "https://github.com/KaveeshKhattar/Solan",
     hasBlog: true,
@@ -193,7 +218,7 @@ const webProjects = [
     slug: "teamfinder",
     image: "/teamfinder.png",
     title: "TeamFinder",
-    domain: "Web",
+    domains: ["Web"],
     liveLink: "https://teamfinder-frontend.vercel.app/",
     gitHub: "https://github.com/KaveeshKhattar/TeamFinder",
     hasBlog: true,
@@ -204,7 +229,7 @@ const webProjects = [
     slug: "teachmate",
     image: "/teachmate.png",
     title: "TeachMate",
-    domain: "Web",
+    domains: ["Web"],
     liveLink: "https://teachmate-murex.vercel.app/",
     gitHub: "https://github.com/KaveeshKhattar/teachmate",
     hasBlog: true,
@@ -213,13 +238,13 @@ const webProjects = [
   },
 ];
 
-const iOSProjects = [
+const iOSProjects: Project[] = [
   {
     slug: "weSplit",
     video: "/iOS/01-WeSplit.mov",
     poster: "/iOS/posters/01-WeSplit.png",
     title: "WeSplit",
-    domain: "iOS",
+    domains: ["iOS"],
     hasBlog: false,
     gitHub:
       "https://github.com/KaveeshKhattar/100DaysOfSwiftUI/tree/main/01-WeSplit",
@@ -230,7 +255,7 @@ const iOSProjects = [
     video: "/iOS/02-GuessTheFlag.mov",
     poster: "/iOS/posters/02-GuessTheFlag.png",
     title: "Guess The Flag",
-    domain: "iOS",
+    domains: ["iOS"],
     hasBlog: false,
     gitHub:
       "https://github.com/KaveeshKhattar/100DaysOfSwiftUI/tree/main/02-GuessTheFlag",
@@ -242,7 +267,7 @@ const iOSProjects = [
     video: "/iOS/04-BetterRest.mov",
     poster: "/iOS/posters/04-BetterRest.png",
     title: "BetterRest",
-    domain: "iOS",
+    domains: ["iOS"],
     hasBlog: false,
     gitHub:
       "https://github.com/KaveeshKhattar/100DaysOfSwiftUI/tree/main/04-BetterRest",
@@ -254,7 +279,7 @@ const iOSProjects = [
     video: "/iOS/05-WordScramble.mov",
     poster: "/iOS/posters/05-WordScramble.png",
     title: "WordScramble",
-    domain: "iOS",
+    domains: ["iOS"],
     hasBlog: false,
     gitHub:
       "https://github.com/KaveeshKhattar/100DaysOfSwiftUI/tree/main/05-WordScramble",
@@ -266,7 +291,7 @@ const iOSProjects = [
     video: "/iOS/07-iExpense.mov",
     poster: "/iOS/posters/07-iExpense.png",
     title: "iExpense",
-    domain: "iOS",
+    domains: ["iOS"],
     hasBlog: false,
     gitHub:
       "https://github.com/KaveeshKhattar/100DaysOfSwiftUI/tree/main/07-iExpense",
@@ -278,7 +303,7 @@ const iOSProjects = [
     video: "/iOS/08-Moonshot.mov",
     poster: "/iOS/posters/08-Moonshot.png",
     title: "Moonshot",
-    domain: "iOS",
+    domains: ["iOS"],
     hasBlog: false,
     gitHub:
       "https://github.com/KaveeshKhattar/100DaysOfSwiftUI/tree/main/08-Moonshot",
@@ -290,7 +315,7 @@ const iOSProjects = [
     video: "/iOS/10-CupcakeCorner.mov",
     poster: "/iOS/posters/10-CupcakeCorner.png",
     title: "Cupcake Corner",
-    domain: "iOS",
+    domains: ["iOS"],
     hasBlog: false,
     gitHub:
       "https://github.com/KaveeshKhattar/100DaysOfSwiftUI/tree/main/10-CupcakeCorner",
@@ -301,10 +326,48 @@ const iOSProjects = [
     video: "/iOS/11-Bookworm.mov",
     poster: "/iOS/posters/11-Bookworm.png",
     title: "Bookworm",
-    domain: "iOS",
+    domains: ["iOS"],
     hasBlog: false,
     gitHub:
       "https://github.com/KaveeshKhattar/100DaysOfSwiftUI/tree/main/11-Bookworm",
     summary: "An app to track which books you've read and what you thought of them.",
   },
 ];
+
+const systemsProjects: Project[] = [
+  {
+    slug: "inference-router",
+    image: "/dir.jpg",
+    title: "KV Cache Inference Router",
+    domains: ["AI / ML Systems", "Observability & Monitoring"],
+    hasBlog: false,
+    gitHub: "https://github.com/KaveeshKhattar/inference-router",
+    summary:
+      "A queue-depth-aware inference request router for Kubernetes-hosted vLLM replicas — cuts p95 TTFT by ~44% at 15 RPS versus round-robin by scoring replicas on live queue depth and KV cache state, with a full Prometheus/Grafana/OpenTelemetry observability stack.",
+  },
+  {
+    slug: "cacheMesh",
+    image: "/meshh.jpg",
+    title: "CacheMesh",
+    domains: ["Distributed Systems", "AI / ML Systems", "High-Performance Systems (Rust/C++)"],
+    hasBlog: false,
+    gitHub: "https://github.com/KaveeshKhattar/cacheMesh",
+    summary:
+      "A distributed, content-addressed block store in Rust with Raft-based metadata replication, consistent-hash placement, delta+varint compression, and ARM NEON-accelerated scans — built incrementally on an 8GB M2 Air, with an LLM KV-cache offload use case as one natural consumer.",
+  },
+];
+
+const fintechProjects: Project[] = [
+  {
+    slug: "settlemesh",
+    image: "/money.jpg",
+    title: "SettleMesh",
+    domains: ["Distributed Systems", "FinTech"],
+    hasBlog: false,
+    gitHub: "https://github.com/KaveeshKhattar/settleTape",
+    summary:
+      "A horizontally-sharded, saga-orchestrated ledger and settlement engine in Go — implements cross-shard transfers via saga orchestration, shard-local double-entry accounting, and idempotent request handling, with failure injection and observability layered in as the project matures.",
+  },
+];
+
+const allProjects: Project[] = [...systemsProjects, ...fintechProjects, ...webProjects, ...iOSProjects];
