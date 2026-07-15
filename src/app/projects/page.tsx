@@ -353,7 +353,7 @@ const systemsProjects: Project[] = [
     hasBlog: false,
     gitHub: "https://github.com/KaveeshKhattar/cacheMesh",
     summary:
-      "A distributed, content-addressed block store in Rust with Raft-based metadata replication, consistent-hash placement, delta+varint compression, and ARM NEON-accelerated scans — built incrementally on an 8GB M2 Air, with an LLM KV-cache offload use case as one natural consumer.",
+      "A distributed, content-addressed block store in Rust with Raft-based metadata replication, consistent-hash placement, delta+varint compression, and ARM NEON-accelerated scans to support LLM KV-cache offload.",
   },
 ];
 
@@ -366,7 +366,7 @@ const fintechProjects: Project[] = [
     hasBlog: false,
     gitHub: "https://github.com/KaveeshKhattar/settleTape",
     summary:
-      "A horizontally-sharded, saga-orchestrated ledger and settlement engine in Go — implements cross-shard transfers via saga orchestration, shard-local double-entry accounting, and idempotent request handling, with failure injection and observability layered in as the project matures.",
+      "A horizontally-sharded, saga-orchestrated ledger and settlement engine in Go. Cross-shard transfers via saga orchestration, shard-local double-entry accounting, and idempotent request handling, with failure injection and observability.",
   },
 ];
 
