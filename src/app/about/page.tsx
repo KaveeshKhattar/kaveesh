@@ -112,7 +112,13 @@ export default function About() {
 
         <Section heading="Education" headingAlignment="left">
         <div className="flex flex-col gap-8">
-            <p>I have graduated from PES University, majoring in Computer Science with a specialisation in Machine Intelligence and Data Science.</p>
+            <p>
+
+            I am currently pursuing a Master of Science in Computer Science at New York University. <br /> <br />
+              
+              I have graduated from PES University, with a Bachelor of Technology in Computer Science with a specialisation in Machine Intelligence and Data Science. 
+              
+            </p>
             <ItemList items={processedEducation} />
           </div>
         </Section>
@@ -167,7 +173,7 @@ const workplaces = [
   {
     title: "Software Engineer",
     company: "AT&T",
-    date: "Jul 2024 - ",
+    date: "Jul 2024 - Jul 2026",
     imageSrc: att,
     link: "https://att.com",
   },
@@ -188,13 +194,13 @@ const workplaces = [
 ];
 
 const education = [
-  // {
-  //   degree: "Master of Science in Computer Science",
-  //   institution: "New York University",
-  //   date: "Sep 2026 - May 2028",
-  //   imageSrc: nyu,
-  //   link: "https://www.nyu.edu/",
-  // },
+  {
+    degree: "Master of Science in Computer Science",
+    institution: "New York University",
+    date: "Aug 2026 - May 2028",
+    imageSrc: nyu,
+    link: "https://www.nyu.edu/",
+  },
   {
     degree: "Bachelor of Technology in Computer Science",
     institution: "PES University",

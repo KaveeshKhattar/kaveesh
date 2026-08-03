@@ -26,7 +26,7 @@ export default function Home() {
               <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
             </span>
             <span className="text-xs font-mono text-muted-foreground">
-              Bengaluru, India
+              New York City, New York
             </span>
           </div>
 
