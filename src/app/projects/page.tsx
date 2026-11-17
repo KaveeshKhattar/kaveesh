@@ -355,6 +355,36 @@ const systemsProjects: Project[] = [
     summary:
       "A distributed, content-addressed block store in Rust with Raft-based metadata replication, consistent-hash placement, delta+varint compression, and ARM NEON-accelerated scans to support LLM KV-cache offload.",
   },
+  {
+    slug: "web-crawler",
+    image: "/project.png",
+    title: "Novelty-Prioritized Web Crawler",
+    domains: ["Search & Information Retrieval"],
+    hasBlog: false,
+    gitHub: "https://github.com/KaveeshKhattar/web-crawler",
+    summary:
+      "A multithreaded Python crawler that prioritizes novelty over depth — URLs are ranked by host/domain novelty so it keeps discovering new sites, with robots.txt compliance and per-host rate limits.",
+  },
+  {
+    slug: "msmarco-search",
+    image: "/rust.png",
+    title: "MS MARCO Search Engine",
+    domains: ["High-Performance Systems (Rust/C++)", "Databases & Storage"],
+    hasBlog: false,
+    gitHub: "https://github.com/KaveeshKhattar/<repo>",
+    summary:
+      "A search engine built from scratch in Rust with no external crates — a compressed inverted index with BM25 ranking and MaxScore pruning over 8.8M MS MARCO passages.",
+  },
+  {
+    slug: "hybrid-retrieval",
+    image: "/graph.png",
+    title: "Hybrid Retrieval Engine",
+    domains: ["AI / ML Systems", "High-Performance Systems (Rust/C++)", "Databases & Storage"],
+    hasBlog: false,
+    gitHub: "https://github.com/KaveeshKhattar/<repo>",
+    summary:
+      "A study of keyword vs. semantic search — compares BM25, HNSW vector search, and a hybrid that re-ranks BM25 results with embeddings, showing the fusion beats either alone.",
+  },
 ];
 
 const fintechProjects: Project[] = [
