@@ -70,6 +70,18 @@ const openSourceContributions = [
     date: "2026-06-12",
     role: "Contributor",
   },
+  {
+    id: "llm-d-remove-stale-wide-ep-override-fma-filter",
+    project: "llm-d/llm-d",
+    title: "Unified vLLM Release Management Across GPU Deployment Environments",
+    summary:
+      "Standardized vLLM releases across four GPU deployment environments, eliminating stale image overrides that silently downgraded wide-EP deployments. Strengthened deployment validation by restoring FMA overlay test coverage, ensuring missing infrastructure configurations surface before release.",
+    link: "https://github.com/llm-d/llm-d/pull/3096",
+    github: "https://github.com/llm-d/llm-d",
+    logo: "/llm-d-2.png",
+    date: "2026-11-21",
+    role: "Contributor",
+  }
 ] as const;
 
 type OpenSourceContribution = (typeof openSourceContributions)[number];
