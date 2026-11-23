@@ -13,9 +13,9 @@ const openSourceContributions = [
   {
     id: "envoyproxy-ai-gateway-ssa-finalizers",
     project: "envoyproxy/ai-gateway",
-    title: "Improved Kubernetes Controller Reliability Through Server-Side Apply",
+    title: "Server-side apply for finalizers. No more update conflicts.",
     summary:
-      "Switched the controller's finalizer updates to Kubernetes server-side apply so finalizers are merged safely without resourceVersion checks while preserving managed field ownership.",
+      "Finalizer updates went through read-modify-write and failed on resourceVersion conflicts. I moved them to server-side apply, so the API server merges them and keeps field ownership in managedFields. Concurrent writers no longer conflict, and the controller stops retrying.",
     link: "https://github.com/envoyproxy/ai-gateway/pull/1930",
     github: "https://github.com/envoyproxy/ai-gateway",
     logo: "/envoy.png",
@@ -25,9 +25,9 @@ const openSourceContributions = [
   {
     id: "envoyproxy-ai-gateway-extproc-cache-race",
     project: "envoyproxy/ai-gateway",
-    title: "Eliminated cache-induced sidecar injection failures",
+    title: "Closed an informer cache race. Sidecar injection is now deterministic.",
     summary:
-      "Fixed a race condition in the gateway admission webhook where informer cache lag could cause extProc sidecar injection to be skipped. Introduced a noCacheReader fallback using the API server and refactored route lookups to use a cache-first, API-reader-second pattern.",
+      "The admission webhook read routes from an informer cache that could lag, and during that lag pods came up without the extProc sidecar. Route lookups now check the cache first and fall back to an uncached API reader. Lookups stay fast, and injection no longer depends on timing.",
     link: "https://github.com/envoyproxy/ai-gateway/pull/1981",
     github: "https://github.com/envoyproxy/ai-gateway",
     logo: "/envoy.png",
@@ -37,9 +37,9 @@ const openSourceContributions = [
   {
     id: "vllm-semantic-router-pluggable-retriever",
     project: "vllm-project/semantic-router",
-    title: "Enabled dynamic retrieval strategies for AI tool selection",
+    title: "Pluggable tool retrieval with built-in observability.",
     summary:
-      "Replaced a hardcoded tool lookup with a pluggable strategy registry, allowing different retrieval algorithms to be swapped in without changing core routing logic. Added per-request observability fields (strategy name, confidence, latency) and a Prometheus metric to surface tool selection performance.",
+      "Tool selection was a single hardcoded lookup. I replaced it with a strategy registry, so a new retrieval algorithm can be dropped in without touching the routing core. Every request records which strategy ran, its confidence and its latency, and a Prometheus metric exposes them.",
     link: "https://github.com/vllm-project/semantic-router/pull/1841",
     github: "https://github.com/vllm-project/semantic-router",
     logo: "/vllm-sr.png",
@@ -49,9 +49,9 @@ const openSourceContributions = [
   {
     id: "kserve-llmisvc-cache-inferenceservice-config",
     project: "kserve/kserve",
-    title: "Reduced API server load by caching ConfigMaps for LLM Services",
+    title: "Moved config reads off the API server and into a scoped informer.",
     summary:
-      "Replaced direct API server reads in the LLMInferenceService controller with a cached controller-runtime client backed by a field-selector-scoped informer. Added a Watches entry with a config-scoped predicate so changes to inferenceservice-config trigger reconciliation across all LLMInferenceService objects.",
+      "The LLMInferenceService controller fetched inferenceservice-config from the API server on every reconcile. Reads now come from a cached client backed by an informer scoped with a field selector to that one ConfigMap. A watch predicate requeues every LLMInferenceService when the config changes. Each reconcile now makes zero direct API server reads for that config.",
     link: "https://github.com/kserve/kserve/pull/5573",
     github: "https://github.com/kserve/kserve",
     logo: "/kserve-rect-hd.jpg",
@@ -61,9 +61,9 @@ const openSourceContributions = [
   {
     id: "kserve-llmisvc-filter-httproute-parent-status",
     project: "kserve/kserve",
-    title: "Fixed incorrect InferencePool migration triggered by unrelated gateway status",
+    title: "Scoped HTTPRoute status to the owning gateway. No more spurious migrations.",
     summary:
-      "Fixed a routing bug where status reports from unrelated gateways could trigger unnecessary infrastructure migrations, improving reliability of LLM service traffic management. Added targeted filtering logic to ensure only the authoritative gateway's status is considered before making routing decisions.",
+      "HTTPRoute parent status from unrelated gateways could trigger an InferencePool migration that nothing called for. The controller now filters parent status down to the authoritative gateway before deciding anything. Migrations happen only when the real gateway says they should.",
     link: "https://github.com/kserve/kserve/pull/5583",
     github: "https://github.com/kserve/kserve",
     logo: "/kserve-rect-hd.jpg",
@@ -73,15 +73,27 @@ const openSourceContributions = [
   {
     id: "llm-d-remove-stale-wide-ep-override-fma-filter",
     project: "llm-d/llm-d",
-    title: "Unified vLLM Release Management Across GPU Deployment Environments",
+    title: "One vLLM release across all GPU environments.",
     summary:
-      "Standardized vLLM releases across four GPU deployment environments, eliminating stale image overrides that silently downgraded wide-EP deployments. Strengthened deployment validation by restoring FMA overlay test coverage, ensuring missing infrastructure configurations surface before release.",
+      "A stale image override was silently running wide-EP deployments on an older vLLM. I removed it and pinned all four GPU environments to the same release. I also restored FMA overlay test coverage, so missing infrastructure configs fail in CI instead of in production.",
     link: "https://github.com/llm-d/llm-d/pull/3096",
     github: "https://github.com/llm-d/llm-d",
     logo: "/llm-d-2.png",
     date: "2026-11-21",
     role: "Contributor",
-  }
+  },
+  {
+    id: "nvke-cp-remediation-failure-domain-discovery",
+    project: "dsx-ai-factory/nvke",
+    title: "Control-plane remediation keeps running when failure-domain discovery fails.",
+    summary:
+      "Any failure-domain discovery error aborted the whole reconcile and blocked remediation, joins, upgrades and deletes. Now only the placement steps wait: scale-up, rollout, rebalance and scale-down. Returning the error would roll back the reconcile's transaction, so it is logged and requeued instead, and the remediation writes are kept. Table-driven tests cover four discovery failure modes.",
+    link: "https://github.com/dsx-ai-factory/nvke/pull/2425",
+    github: "https://github.com/dsx-ai-factory/nvke",
+    logo: "/nvidia.png",
+    date: "2026-11-23",
+    role: "Contributor",
+  },
 ] as const;
 
 type OpenSourceContribution = (typeof openSourceContributions)[number];
